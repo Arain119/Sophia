@@ -1,0 +1,122 @@
+# Python bytecode and packaging artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Test, lint, type-check, and dependency caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.deps/
+
+# Coverage and local reports
+.coverage
+coverage.xml
+htmlcov/
+
+# Local secrets
+scripts/keys.txt
+scripts/key.txt
+scripts/keys_local.py
+tools/key.txt
+tools/key*.txt
+tools/nvapi-*.txt
+
+# Local runtime/training outputs
+out/
+/out/*
+/runs/
+checkpoints/
+logs/
+*.log
+out*.html
+
+# Local datasets / indices (large, may contain private data)
+dataset/*.jsonl
+dataset/*.idx.npy
+dataset/*.idx.meta.json
+dataset/*.idx.npz
+dataset/**/*.jsonl
+dataset/**/*.idx.npy
+dataset/**/*.idx.meta.json
+dataset/**/*.idx.npz
+dataset/pretrain*/
+dataset/pretrain_jsonl/
+/dataset/logs/
+/dataset/pretrain/_recovery_report*.json
+/dataset/pretrain/*/manifest.recovered.json
+/dataset/*.tmp_build.*/
+/dataset/*/report.json
+/dataset/*/*_report.json
+/dataset/*/review_sample.jsonl
+/dataset/pretrain_val_code_blob_row_cleanup_manifest.json
+/dataset/pretrain_tokens/
+/dataset/pretrain/train/
+/dataset/pretrain/test/
+/dataset/pretrain/val/
+/dataset/sft/train.jsonl
+/dataset/sft/test.jsonl
+/dataset/grpo/train.jsonl
+
+# Local model checkpoints / previews (keep weights out of git)
+model/Elegia-preview-*/
+model/**/*.pth
+model/**/*.pt
+model/**/*.bin
+model/**/*.safetensors
+model/tokenizer.model
+model/tokenizer.vocab
+model/special_tokens_map.json
+*.ckpt
+*.pt
+*.bin
+*.safetensors
+*.npz
+*.npy
+*.npy.*
+
+# Local temp folders
+.tmp/
+.tmp_llama_cpp/
+_tmp*/
+_tmp_*/
+tmp/
+/tmp/
+/tmp_*
+*.tmp
+*.tmp.*
+*.bak
+tmp_ssh_test.txt
+
+# Local external downloads
+external/
+
+# Archives / exports
+*.rar
+*.zip
+*.7z
+*.tar
+*.tgz
+*.tar.gz
+upload/
+.sync_backup_*.tar
+
+# Repo-local git config (keep developer machine config out of git)
+.gitconfig
+
+# Local research / scratch (keep large PDFs & experiments out of git)
+_research/
+
+# Legacy archives / backups
+legacy/
+
+# Local garbage / locked temp dirs (Windows)
+z_trash_unremovable__delete_manually/
+
+# IDE / agent local settings
+/.claude/
+.cache/
+
+# Operational scratch: probe evidence, logs, reports (kept out of git)
+ops/
+dataset/pretrain_tokens_mixed/

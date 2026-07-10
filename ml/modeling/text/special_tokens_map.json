@@ -1,0 +1,13 @@
+{
+  "additional_special_tokens": [
+    "<｜User｜>",
+    "<｜Assistant｜>",
+    "<｜latest_reminder｜>",
+    "<think>",
+    "</think>"
+  ],
+  "bos_token": "<｜begin▁of▁sentence｜>",
+  "eos_token": "<｜end▁of▁sentence｜>",
+  "pad_token": "<|pad|>",
+  "unk_token": "<|unk|>"
+}

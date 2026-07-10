@@ -1,0 +1,49 @@
+{
+  "kind": "posttrain_length_curriculum",
+  "file_role": "generated_curriculum_plan",
+  "created_at_utc": "2026-06-24T15:07:55.505142+00:00",
+  "goal": "Keep post-training faithful to the original SFT examples while shaping the decoder around its configured context window.",
+  "model_context": {
+    "max_seq_len": 4096,
+    "context_required": true,
+    "source": "canonical pretrain model config"
+  },
+  "datasets": {
+    "sft": {
+      "dir": "dataset/sft",
+      "rows": {
+        "train": 6426,
+        "val": 164,
+        "test": 87,
+        "total": 6677
+      },
+      "rows_source": "split_jsonl",
+      "role": "original supervised conversations aligned to the configured context window"
+    }
+  },
+  "sft_curriculum": [
+    {
+      "stage": "sft_core",
+      "max_seq_len": 4096,
+      "data": "dataset/sft/train.jsonl",
+      "selection": "all_examples",
+      "crop_policy": "tail_tokens",
+      "recommended_share_of_updates": 0.92,
+      "purpose": "main supervised behavior shaping under the decoder context budget"
+    },
+    {
+      "stage": "sft_long_tail",
+      "max_seq_len": 4096,
+      "data": "dataset/sft/train.jsonl",
+      "selection": "long_examples_only",
+      "crop_policy": "preserve_final_turn",
+      "recommended_share_of_updates": 0.08,
+      "purpose": "soft long-sample stage that preserves the final supervised turn when examples exceed the context window"
+    }
+  ],
+  "training_policy": {
+    "context_policy": "context_window",
+    "reason": "The dataset policy prioritizes original data fidelity. The decoder is trained at the configured context length; post-training reinforces that budget directly while the soft long-SFT stage preserves the final supervised turn on overflow examples.",
+    "minimum_acceptance": {}
+  }
+}

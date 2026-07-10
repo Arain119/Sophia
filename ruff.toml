@@ -1,0 +1,28 @@
+target-version = "py310"
+line-length = 88
+exclude = [".deps", ".tmp", "model/_vendor", "tmp_*"]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[lint]
+# Keep the default Ruff philosophy: enforce correctness & maintainability, rely on the formatter for wrapping.
+select = ["E", "F", "W", "N", "C90", "UP", "B"]
+ignore = [
+  # Let `ruff format` handle line wrapping; E501 is too noisy for docstrings/URLs/training args.
+  "E501",
+]
+
+[lint.mccabe]
+max-complexity = 30
+
+[lint.per-file-ignores]
+# Entrypoints intentionally configure the runtime (env vars / sys.path) before importing heavy deps.
+"ml/tooling/**/*.py" = ["E402"]
+"ml/training/pretrain/shard_builder.py" = ["E402"]
+"ml/tooling/scripts/data/split_pretrain_parquet_doc_splits.py" = ["C901"]
+
+# The model file intentionally follows common PyTorch conventions (e.g. `torch.nn.functional as F`).
+"ml/modeling/llm/model_sophia.py" = ["N812", "C901"]

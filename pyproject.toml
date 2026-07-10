@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml"
+version = "0.1.0"
+description = "Sophia language-model training, inference, data, and release stack."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "torch==2.8.0+cu128",
+  "transformers==5.10.2",
+  "accelerate==1.14.0",
+  "tokenizers==0.22.2",
+  "safetensors==0.7.0",
+  "pyarrow==24.0.0",
+  "datasets==4.8.5",
+  "huggingface-hub==1.22.0",
+  "liger-kernel==0.8.0",
+  "tensorboard==2.20.0",
+  "numpy==2.3.2",
+  "orjson==3.11.7",
+  "jinja2==3.1.6",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==9.1.1",
+  "pytest-cov==7.1.0",
+  "ruff==0.15.20",
+]
+
+[project.scripts]
+ml-train = "ml.cli.train:main"
+ml-eval = "ml.cli.eval:main"
+ml-shard = "ml.cli.shard_builder:main"
+ml-pretrain-check = "ml.cli.pretrain_check:main"
+ml-sft = "ml.cli.sft:main"
+ml-rehearsal = "ml.cli.rehearsal:main"
+ml-tool = "ml.tooling.cli:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ml*"]
+
+[tool.setuptools.package-data]
+# Ensure bundled non-Python assets are included in wheels/sdists.
+# These are used by tokenizer/data utilities and should be available when installed.
+"ml.modeling.text" = ["*.json", "*.jinja"]
+
+[tool.ruff]
+target-version = "py312"

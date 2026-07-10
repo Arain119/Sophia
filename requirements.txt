@@ -1,0 +1,27 @@
+# ML dependencies (training/inference, HuggingFace-native)
+#
+# Mirrors the canonical dependency pins in pyproject.toml.
+#
+# Important:
+# - Use Python 3.12.
+# - Install with CUDA 12.8 PyTorch wheels, e.g. `uv pip install --torch-backend cu128 -r requirements.txt`.
+torch==2.8.0+cu128
+transformers==5.10.2
+accelerate==1.14.0
+tokenizers==0.22.2
+safetensors==0.7.0
+pyarrow==24.0.0
+datasets==4.8.5
+huggingface-hub==1.22.0
+liger-kernel==0.8.0
+tensorboard==2.20.0
+numpy==2.3.2
+orjson==3.11.7
+
+# `tokenizer.apply_chat_template(...)` uses Jinja2 (not always pulled in by transformers extras).
+jinja2==3.1.6
+
+# Dev/test tooling (lint + tests)
+pytest==9.1.1
+pytest-cov==7.1.0
+ruff==0.15.20

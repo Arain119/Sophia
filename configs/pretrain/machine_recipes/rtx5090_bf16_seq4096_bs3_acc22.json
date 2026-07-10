@@ -1,0 +1,164 @@
+{
+  "artifacts": {
+    "machine_recipe": {
+      "best": {
+        "accumulation_steps": 22,
+        "batch_size": 3,
+        "candidate": {
+          "gradient_checkpointing": false,
+          "gradient_checkpointing_exclude_first": 0,
+          "gradient_checkpointing_exclude_last": 0,
+          "loss_chunk_size": 0
+        },
+        "max_memory_gb": 27.9389386177063,
+        "step_time_s": 9.89001432992518,
+        "tokens_per_sec": 27334.237442105423
+      },
+      "kind": "fixed_pretrain_recipe",
+      "source": "rtx5090_bf16_bs3_acc22_sdpa_flash_liger_inductor_probe_2026-07-08"
+    },
+    "machine_runtime": {
+      "best": {
+        "accumulation_steps": 22,
+        "batch_size": 3,
+        "dataloader_num_workers": 0,
+        "dataloader_persistent_workers": 0,
+        "dataloader_prefetch_factor": 0,
+        "max_memory_gb": 27.9389386177063,
+        "shard_preload": 1,
+        "shard_preload_bytes": 4194304,
+        "step_execution_backend": "inductor",
+        "step_time_s": 9.89001432992518,
+        "tokens_per_sec": 27334.237442105423
+      },
+      "kind": "fixed_pretrain_runtime",
+      "source": "rtx5090_bf16_bs3_acc22_sdpa_flash_liger_inductor_probe_2026-07-08"
+    },
+    "update_profile": {
+      "accumulation_steps": 22,
+      "avg_update_breakdown_s": {
+        "update_s": 9.89001432992518
+      },
+      "batch_size": 3,
+      "kind": "fixed_pretrain_profile",
+      "max_memory_gb": 27.9389386177063,
+      "note": "RTX 5090 BF16 measured recipe: PyTorch SDPA Flash attention, Liger fused linear CE, Inductor step execution, bs3/acc22 at seq4096. Stability rerun measured 27.3k tok/s with 27.94GB allocated and 28.03GB reserved; bs4 OOMed.",
+      "seq_len": 4096,
+      "source": "rtx5090_bf16_bs3_acc22_sdpa_flash_liger_inductor_probe_2026-07-08",
+      "step_time_s": 9.89001432992518,
+      "tokens_per_sec_est": 27334.237442105423,
+      "tokens_per_update": 270336
+    }
+  },
+  "data_signature": {
+    "data_path": "/root/autodl-tmp/pretrain_tokens/train",
+    "eval_data_path": "/root/autodl-tmp/pretrain_tokens/val",
+    "run_kind": "pretrain",
+    "test_data_path": "/root/autodl-tmp/pretrain_tokens/test",
+    "test_manifest_path": "/root/autodl-tmp/pretrain_tokens/test/manifest.json",
+    "test_manifest_sha1": "994770f0ee6703018b0e156e34d071ff3621f69c",
+    "tokenizer_bundle_sha1": "0540271a37a7710ba7216e5d46ce8c647c768cdc",
+    "tokenizer_path": "/root/autodl-tmp/ml/ml/modeling/text",
+    "train_manifest_path": "/root/autodl-tmp/pretrain_tokens/train/manifest.json",
+    "train_manifest_sha1": "70763db46a65e30a6105d46c1a3ee96763e92090",
+    "val_manifest_path": "/root/autodl-tmp/pretrain_tokens/val/manifest.json",
+    "val_manifest_sha1": "458f9dd400cca3f66aede57bfa1fb92eb0ee0a43"
+  },
+  "evidence": {
+    "corpus_tokens_total": 16221700096,
+    "model_params_estimate": 830573568,
+    "runtime_measurement_status": "rtx5090_bf16_bs3_acc22_validated_short_probe",
+    "tokens_per_parameter": 19.53072036118539
+  },
+  "kind": "pretrain_machine_recipe",
+  "machine_recipe": {
+    "accumulation_steps": 22,
+    "batch_size": 3,
+    "gradient_checkpointing": 0,
+    "gradient_checkpointing_exclude_first": 0,
+    "gradient_checkpointing_exclude_last": 0,
+    "loss_chunk_size": 0
+  },
+  "machine_runtime": {
+    "dataloader_num_workers": 0,
+    "dataloader_persistent_workers": 0,
+    "dataloader_prefetch_factor": 0,
+    "shard_preload": 1,
+    "shard_preload_bytes": 4194304,
+    "step_execution_backend": "inductor"
+  },
+  "machine_signature": {
+    "cuda": "12.8",
+    "cuda_capability": [
+      12,
+      0
+    ],
+    "cuda_device_name": "NVIDIA GeForce RTX 5090",
+    "cuda_total_memory_gb": 31.356689453125,
+    "device_type": "cuda",
+    "machine": "x86_64",
+    "platform": "linux",
+    "schema": "pretrain_machine_adaptive_v1",
+    "torch": "2.8.0+cu128"
+  },
+  "release_semantics": {
+    "adam_eps": 1e-06,
+    "agc_clip": 0.01,
+    "agc_eps": 0.001,
+    "agc_exclude_bias_and_norm": 1,
+    "backend": "inductor",
+    "beta1": 0.9,
+    "beta2": 0.95,
+    "ema_decay": 0.0,
+    "embedding_lr_scale": 0.25,
+    "grad_clip_mode": "hybrid_auto",
+    "learning_rate": 0.0001,
+    "lr_schedule": "wsd",
+    "max_grad_norm": 1.0,
+    "min_lr_ratio": 0.1,
+    "muon_ns_steps": 4,
+    "muon_target_rms": 0.18,
+    "profile": {
+      "curriculum": {
+        "default_total_tokens": 0,
+        "max_seq_len": 4096,
+        "stage_token_weights": [
+          250
+        ],
+        "train_seq_len": 4096,
+        "train_seq_stages": [
+          4096
+        ]
+      },
+      "kind": "release",
+      "model": {
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "dim": 1536,
+        "dropout": 0.0,
+        "ffn_hidden": 4096,
+        "head_dim": 128,
+        "max_batch_size": 4,
+        "max_seq_len": 4096,
+        "n_heads": 12,
+        "n_layers": 30,
+        "norm_eps": 1e-06,
+        "num_key_value_heads": 4,
+        "original_seq_len": 0,
+        "rope_factor": 16.0,
+        "rope_head_dim": 64,
+        "rope_theta": 500000.0,
+        "use_qk_norm": true,
+        "vocab_size": 49152
+      },
+      "name": "release"
+    },
+    "target_tokens_per_update": 270336,
+    "warmup_ratio": 0.0,
+    "warmup_steps": 800,
+    "weight_decay": 0.05,
+    "wsd_stable_ratio": 0.9
+  },
+  "selected_name": "release_pretrain_rtx5090_bf16_sdpa_flash_liger_inductor",
+  "stage": "pretrain"
+}
