@@ -11,18 +11,36 @@ description: 一键启动或恢复 Sophia 训练(预训练与 SFT 后训练)。�
 ## 前置条件
 
 手头没有目标机时,先按 [REMOTE_GPU.md](REMOTE_GPU.md) 走完租卡到部署的完整
-教程(选卡、镜像、SSH、环境、数据上传、远程观测、收尾取回产物),再回到本节。
+教程(选卡、镜像、SSH、环境、数据下载、远程观测、收尾取回产物),再回到本节。
+**选卡时直接租单张 RTX 5090(32GB)**:发布 recipe 与该卡签名绑定,选其它卡型
+会被 preflight 拒绝,不要用其它卡型替代。
 
 启动前确认(脚本也会逐项校验,提前确认可少走弯路):
 
 - Linux + CUDA 环境,Python ≥ 3.12,`torch==2.8.0+cu128` 可导入且
   `torch.cuda.is_available()`。
 - 预训练阶段:`dataset/pretrain_tokens/{train,val,test}/manifest.json` 存在,
-  tokenizer bundle 位于 `ml/modeling/text`。
+  tokenizer bundle 位于 `ml/modeling/text`。数据缺失时先走下节「数据获取」。
 - SFT 阶段:预训练已完成且 export 落盘(config/tokenizer/weights 在预训练
   `output_dir` 中),`dataset/sft/train.jsonl` 存在。
 - 目标机与签名 recipe 匹配(默认 recipe 面向 RTX 5090,CUDA capability 12.0)。
   机器不匹配时 preflight 会拒绝启动,这是预期行为,不是待修的 bug。
+
+## 数据获取(首次训练)
+
+训练数据发布于 ModelScope 公开数据集
+[Arain119/Sophia-dataset](https://www.modelscope.cn/datasets/Arain119/Sophia-dataset),
+`tools/fetch_dataset.sh` 一条命令完成下载与校验,断点续传,落位 `dataset/`:
+
+```bash
+bash tools/fetch_dataset.sh pretrain --manifests-only  # 预检:先验指纹再下大文件
+bash tools/fetch_dataset.sh                            # 预训练 shards + SFT(约 71 GB)
+bash tools/fetch_dataset.sh sft                        # 仅 SFT 数据(约 22 MB)
+```
+
+脚本分两段下载:先取各 split 的 `manifest.json` 并校验 tokenizer 指纹与本地
+bundle 一致,通过后才开始 shard 大文件传输;完成后逐 shard 核对字节数。
+云 GPU 机上直接运行即可(国内机房到 ModelScope 带宽通常远好于本地上行)。
 
 ## 执行步骤
 
@@ -86,7 +104,11 @@ metrics.jsonl、GPU 状态与 checkpoint 列表,页面始终是最新状态;面�
 
 ## 失败处置
 
-- **manifest 缺失**:先构建 token shards(`ml-shard`),不要绕过校验。
+- **manifest 缺失**:先获取公开数据集(`bash tools/fetch_dataset.sh`),自备语料
+  时用 `ml-shard` 构建;不要绕过校验。
+- **tokenizer 指纹不一致**(fetch 脚本或 preflight 报 sha1 mismatch):说明数据集
+  与本地 tokenizer bundle 版本不匹配。核对数据集发布版本与仓库版本并对齐,
+  不要改 manifest、不要换算指纹、不要绕过校验。
 - **SFT 找不到 export**:预训练尚未完成或 `SOPHIA_EXPORT_DIR` 指向错误;
   export 落在预训练的 `output_dir` 内。
 - **机器签名不匹配**:说明当前 GPU 不是 recipe 目标机。正确做法是在新目标机上

@@ -15,6 +15,12 @@ Treat them differently.
   - `test/manifest.json`
 - SFT post-train datasets are the split JSONL files under `dataset/sft/`.
 
+The public release inputs are hosted on ModelScope at
+[Arain119/Sophia-dataset](https://www.modelscope.cn/datasets/Arain119/Sophia-dataset)
+and land in this directory via `bash tools/fetch_dataset.sh` (staged download:
+manifests + tokenizer-fingerprint check first, then the shard payload, then a
+per-shard size verification).
+
 ## Local Artifacts
 
 - `report.json` and `*_report.json` files are locally generated summaries or

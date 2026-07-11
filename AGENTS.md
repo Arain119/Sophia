@@ -13,10 +13,17 @@ Sophia 是一个语言模型训练系统:约 0.83B 参数的 decoder causal LM,B
 ## 一键训练
 
 ```bash
+bash tools/fetch_dataset.sh                        # 首次:下载公开数据集(约 71 GB)
 bash tools/one_click_train.sh pretrain --dry-run   # 先验证门禁与启动命令
 bash tools/one_click_train.sh pretrain             # 预训练(后台长跑)
 bash tools/one_click_train.sh sft                  # SFT 后训练
 ```
+
+训练数据发布于 ModelScope 公开数据集
+[Arain119/Sophia-dataset](https://www.modelscope.cn/datasets/Arain119/Sophia-dataset);
+`fetch_dataset.sh` 先校验 manifest 的 tokenizer 指纹再下载 shard 大文件,支持
+断点续传,完成后逐 shard 核对字节数。硬件请直接使用/租用单张 RTX 5090(32GB),
+其它卡型会被 preflight 拒绝。
 
 脚本自动完成:环境检查 → 数据资产校验 → 回归测试子集 → GPU readiness probe →
 后台启动训练。启动日志在 `<output_dir>.launch.log`,PID 在 `<output_dir>.pid`。

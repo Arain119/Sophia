@@ -10,6 +10,9 @@
 #     stage      defaults to pretrain
 #     --dry-run  run every gate, print the launch command, skip the launch
 #
+# Training data can be fetched from the public ModelScope dataset first:
+#   bash tools/fetch_dataset.sh          # pretrain shards + SFT jsonl (~71 GB)
+#
 # Environment overrides (all optional):
 #   SOPHIA_PYTHON           python interpreter          (default: python3)
 #   SOPHIA_OUTPUT_DIR       run output directory        (default: runs/pretrain_rtx5090_bf16
@@ -84,7 +87,7 @@ if [ "$STAGE" = "pretrain" ]; then
     DATA_ROOT="$(resolve_root "$DATA_PATH")"
     for split in train val test; do
         [ -f "$DATA_ROOT/$split/manifest.json" ] \
-            || fail "missing $DATA_ROOT/$split/manifest.json (build token shards first: ml-shard)"
+            || fail "missing $DATA_ROOT/$split/manifest.json (fetch the public dataset: bash tools/fetch_dataset.sh pretrain; or build your own token shards: ml-shard)"
     done
     [ -f "$TOKENIZER_PATH/tokenizer.json" ] || fail "missing tokenizer bundle at $TOKENIZER_PATH"
     if [ -n "$DECAY_DATA_PATH" ]; then
@@ -108,7 +111,7 @@ else
     done
     ls "$EXPORT_DIR"/*.safetensors >/dev/null 2>&1 || ls "$EXPORT_DIR"/pytorch_model*.bin >/dev/null 2>&1 \
         || fail "no model weights found under $EXPORT_DIR"
-    [ -f "$SFT_TRAIN_DATA" ] || fail "missing SFT train data at $SFT_TRAIN_DATA"
+    [ -f "$SFT_TRAIN_DATA" ] || fail "missing SFT train data at $SFT_TRAIN_DATA (fetch the public dataset: bash tools/fetch_dataset.sh sft)"
     [ -f "$SFT_EVAL_DATA" ] || { echo "note: eval split not found at $SFT_EVAL_DATA"; SFT_EVAL_DATA=""; }
     [ -f "$SFT_TEST_DATA" ] || { echo "note: test split not found at $SFT_TEST_DATA"; SFT_TEST_DATA=""; }
     [ -f "dataset/posttrain_length_curriculum.json" ] \

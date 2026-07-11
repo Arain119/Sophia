@@ -5,15 +5,19 @@ RunPod、Vast.ai 等)步骤等价,差异只在控制台操作和数据盘路径�
 
 ## 1. 选卡与开机
 
-- **卡型**:单张 RTX 5090(32GB 显存,CUDA capability 12.0)。签名 recipe 与
-  该卡绑定,租其它卡型需要在目标机重新测量并签入新 recipe(见 SKILL.md 失败处置)。
+- **卡型**:单张 RTX 5090(32GB 显存,CUDA capability 12.0),**请直接选这张卡,
+  不要用其它卡型替代**。签名 recipe、GPU 探针与全部默认流程都以 5090 为准,
+  其它卡型会被 preflight 拒绝(需自行重新测量并签入新 recipe,不在本教程覆盖
+  范围内)。
 - **镜像**:选带 CUDA 12.8 的基础镜像(如 PyTorch 官方镜像系列);驱动需支持
   CUDA 12.8。Python 版本不足 3.12 时后续用 conda 补。
-- **数据盘**:建议 ≥ 200 GB。token shards 约 35 GB,每个 checkpoint 数 GB 到
-  十余 GB,训练全程会保留多个。AutoDL 的数据盘挂载在 `/root/autodl-tmp`,
-  代码、数据、输出都放这里(系统盘小且重置镜像会丢)。
-- **计费**:数天量级的长跑建议包日/包周计费;按量计费务必确认余额充足,
-  余额耗尽实例会被强制关机。
+- **数据盘**:建议 ≥ 300 GB。公开数据集约 71 GB(pretrain_tokens 62 GB +
+  pretrain_decay 9 GB + SFT 22 MB),每个 checkpoint 数 GB 到十余 GB,训练全程
+  会保留多个。AutoDL 的数据盘挂载在 `/root/autodl-tmp`,代码、数据、输出都放
+  这里(系统盘小且重置镜像会丢)。
+- **计费**:按发布配方吞吐(约 27k token/s),train split 全量 16.2B token 约需
+  一周量级,建议包日/包周计费;按量计费务必确认余额充足,余额耗尽实例会被
+  强制关机。
 
 ## 2. 连接实例
 
@@ -49,9 +53,23 @@ pip install -e ".[dev]"
 验证:`python -c "import torch; print(torch.__version__, torch.cuda.is_available())"`
 应输出 `2.8.0+cu128 True`。
 
-## 4. 上传数据
+## 4. 获取数据
 
-token shards 与 SFT 数据不入 git,需单独上传。本地到云机直传:
+训练数据不入 git,发布于 ModelScope 公开数据集
+[Arain119/Sophia-dataset](https://www.modelscope.cn/datasets/Arain119/Sophia-dataset)。
+**推荐直接在云机上下载**(国内 GPU 机房到 ModelScope 的带宽通常远好于本地上行),
+在 `tmux` 内执行:
+
+```bash
+cd /root/autodl-tmp/Sophia
+bash tools/fetch_dataset.sh          # 预训练 shards + SFT 数据,约 71 GB,断点续传
+```
+
+脚本先下载各 split 的 `manifest.json` 并校验 tokenizer 指纹,通过后才传输 shard
+大文件,完成后逐 shard 核对字节数——传输损坏会在这里暴露,不会带病进入训练。
+中断后重跑同一命令即可续传。
+
+自备数据(不用公开数据集)时改为 rsync 直传:
 
 ```bash
 rsync -avP -e "ssh -p <port>" dataset/pretrain_tokens root@<ip>:/root/autodl-tmp/Sophia/dataset/
@@ -59,15 +77,14 @@ rsync -avP -e "ssh -p <port>" dataset/pretrain_decay  root@<ip>:/root/autodl-tmp
 rsync -avP -e "ssh -p <port>" dataset/sft             root@<ip>:/root/autodl-tmp/Sophia/dataset/
 ```
 
-带宽有限时优先走平台网盘/对象存储中转。传完在云机上核对:
+传完在云机上核对(fetch 脚本已内置同等校验,rsync 路径需手动执行):
 
 ```bash
 PYTHONPATH=. python3 -m ml.tooling.cli audit token-shards \
   --manifest dataset/pretrain_tokens/train/manifest.json
 ```
 
-manifest 校验通过即代表 shard 完整且 tokenizer 指纹一致;传输损坏会在这里暴露,
-不会带病进入训练。
+manifest 校验通过即代表 shard 完整且 tokenizer 指纹一致。
 
 ## 5. 启动训练
 

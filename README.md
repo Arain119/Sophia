@@ -212,6 +212,24 @@ Token shards 由 `ml-shard` 离线编码生成,按 train/val/test 三个 split �
 
 预训练过程中同时运行污染扫描(contamination scan),检测评测子集与训练数据的重叠风险,报告计入发布证据。
 
+### 4.1 公开数据集
+
+训练数据不入 git,发布于 ModelScope:[Arain119/Sophia-dataset](https://www.modelscope.cn/datasets/Arain119/Sophia-dataset)。内容与仓库默认路径一一对应,`tools/fetch_dataset.sh` 一条命令完成下载与完整性校验(先下 manifest 并校验 tokenizer 指纹,再下 shard 大文件,支持断点续传):
+
+```bash
+bash tools/fetch_dataset.sh            # 预训练 shards + SFT 数据(约 71 GB)
+bash tools/fetch_dataset.sh sft        # 仅 SFT 数据(约 22 MB)
+bash tools/fetch_dataset.sh pretrain --manifests-only   # 只做指纹与布局预检
+```
+
+| 路径 | 内容 | 规模 |
+| --- | --- | ---: |
+| `pretrain_tokens/` | 主预训练 token shards(train 16.2B / val 341M / test 25M token) | ≈ 62 GB |
+| `pretrain_decay/` | WSD decay 段 token shards(train 1.6B token) | ≈ 9 GB |
+| `sft/` | SFT 对话 JSONL(train/val/test) | ≈ 22 MB |
+
+*表:公开数据集内容(int32 shards,`eos_token_id = 3`)。数据集另含约 32 GB 的原始/中间语料(`pretrain/`),仅在需要自行重建 shards 时下载。*
+
 ## 5. 工程实现与可复现性
 
 ### 5.1 Machine recipe 与签名
@@ -270,17 +288,30 @@ python3 -m pytest -q
 
 ### 6.1 安装
 
-要求 Python 3.12 与 Linux + CUDA 环境,先安装匹配机器的 CUDA PyTorch wheel:
+硬件建议单张 NVIDIA GeForce RTX 5090(32GB,CUDA capability 12.0):发布 recipe 与该卡签名绑定,租云 GPU 时直接选 5090 即可走通全部默认流程(从零租卡教程见 [`.claude/skills/train/REMOTE_GPU.md`](.claude/skills/train/REMOTE_GPU.md))。
+
+软件要求 Python 3.12 与 Linux + CUDA 环境。注意顺序:必须先从 PyTorch 官方 index 安装 CUDA 12.8 的 torch wheel,再安装项目依赖(`torch==2.8.0+cu128` 无法从 PyPI 直接解析):
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install --upgrade pip
+pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128
 pip install -e ".[dev]"
 ```
 
 核心依赖为 `torch==2.8.0+cu128`、`transformers==5.10.2`、`liger-kernel==0.8.0`、`tensorboard==2.20.0`,完整清单见 `pyproject.toml`。
 
-### 6.2 环境验证
+### 6.2 数据获取
+
+首次训练先从 ModelScope 拉取公开数据集(见 [4.1 节](#41-公开数据集)):
+
+```bash
+bash tools/fetch_dataset.sh        # 约 71 GB,落位 dataset/,支持断点续传
+```
+
+脚本会先校验数据集 manifest 的 tokenizer 指纹与本地 bundle 一致、再下载 shard 大文件,完成后逐 shard 核对字节数。自备语料时改用 `ml-shard` 构建 token shards。
+
+### 6.3 环境验证
 
 ```bash
 PYTHONPATH=. pytest -q
@@ -291,7 +322,7 @@ bash tools/pretrain_gpu_probe.sh
 
 `pretrain_check` 在与正式训练相同的链路上验证数据读取、forward/backward、优化器、checkpoint 与导出;`pretrain_gpu_probe.sh` 在目标机上完成 Inductor 审计、加速能力审计与 BF16 精度探针。
 
-### 6.3 预训练
+### 6.4 预训练
 
 ```bash
 PYTHONPATH=. python3 -m ml.cli.train \
@@ -303,7 +334,7 @@ PYTHONPATH=. python3 -m ml.cli.train \
 
 默认使用签名后的 RTX 5090 BF16 recipe。`--decay_data_path` 省略时全程使用主数据集。`output_dir` 须为空目录,启动日志应写在其之外。
 
-### 6.4 SFT 与推理
+### 6.5 SFT 与推理
 
 ```bash
 PYTHONPATH=. python3 -m ml.cli.sft \
@@ -317,11 +348,12 @@ PYTHONPATH=. python3 -m ml.cli.eval \
 
 `ml-eval` 自动从 `out/` 发现本地 export,支持 KV cache 增量解码,并按上下文窗口裁剪 prompt 与生成预算。
 
-### 6.5 一键训练
+### 6.6 一键训练
 
 `tools/one_click_train.sh` 将门禁与启动流程收敛为一条命令,覆盖预训练与 SFT 两个阶段:依次执行环境检查、数据资产校验、回归测试子集、GPU readiness probe,通过后以后台进程启动训练,启动日志写在 `output_dir` 之外:
 
 ```bash
+bash tools/fetch_dataset.sh                            # 首次:下载公开数据集
 bash tools/one_click_train.sh pretrain --dry-run       # 校验门禁并打印启动命令
 bash tools/one_click_train.sh pretrain                 # 预训练
 bash tools/one_click_train.sh sft                      # SFT(默认读取预训练 output_dir 中的 export)
@@ -330,7 +362,7 @@ SOPHIA_RESUME=auto bash tools/one_click_train.sh pretrain   # 断点恢复
 
 数据路径、输出目录、恢复模式等均可经 `SOPHIA_*` 环境变量覆盖,完整清单见脚本头部注释。该流程同时以 agent 技能形式提供:Claude Code 中可直接调用 `/train`(`.claude/skills/train/SKILL.md`),Codex 等其它 agent 可从仓库根目录的 `AGENTS.md` 获得等价指引。
 
-### 6.6 命令行入口
+### 6.7 命令行入口
 
 | 命令 | 功能 |
 | --- | --- |
@@ -360,7 +392,7 @@ ml/
 tests/           测试(含工程边界守护)
 configs/         签名后的 machine recipes
 dataset/         数据集布局约定(见 dataset/README.md)
-tools/           GPU 健康检查、训练监控与实时观测面板
+tools/           数据集下载、一键训练、GPU 健康检查、训练监控与实时观测面板
 ```
 
 ## License
