@@ -39,13 +39,14 @@ echo "[4/5] BF16 precision probe"
   --output_json "$REMOTE_ROOT/ops/reports/precision_probe_gpu.json"
 
 echo "[5/5] summary"
-"$PYTHON_BIN" - <<'PY'
+SOPHIA_PROBE_REPORT_ROOT="$REMOTE_ROOT/ops/reports" "$PYTHON_BIN" - <<'PY'
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
-root = Path("/root/autodl-tmp/ops/reports")
+root = Path(os.environ["SOPHIA_PROBE_REPORT_ROOT"])
 for name in (
     "acceleration_gpu_probe.json",
     "precision_probe_gpu.json",

@@ -113,8 +113,9 @@ legacy/
 # Local garbage / locked temp dirs (Windows)
 z_trash_unremovable__delete_manually/
 
-# IDE / agent local settings
-/.claude/
+# IDE / agent local settings (project skills stay tracked)
+/.claude/*
+!/.claude/skills/
 .cache/
 
 # Operational scratch: probe evidence, logs, reports (kept out of git)
