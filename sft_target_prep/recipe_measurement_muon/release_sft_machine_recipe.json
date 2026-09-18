@@ -1,0 +1,146 @@
+{
+  "schema": "sophia_sft_machine_recipe_v1",
+  "kind": "sft_machine_recipe",
+  "status": "measured",
+  "created_at": "2026-09-02T06:22:14.387654+00:00",
+  "implementation_sha256": "f0bc39314892d1dc61e16ea1e3f510ea94b872624af9de0786df7c2646c8a9e0",
+  "semantic_recipe_sha256": "13cc3630957a06077cc5713122756eec9037351d19790d35f37febf36c58609c",
+  "dataset_manifest_sha256": "56f4b5ad041850ba9b99797c7c5d2dfda99a229167c50014b3dc0374b554adf0",
+  "parent_checkpoint_sha256": "9f55fba52cae04c9cf9f27f9e44dafd2c3cfaf265c03bab4e21c7ac6f4b55aa0",
+  "machine_signature": {
+    "schema": "sft_machine_adaptive_v1",
+    "device_type": "cuda",
+    "torch": "2.8.0+cu128",
+    "cuda": "12.8",
+    "platform": "linux",
+    "machine": "x86_64",
+    "cuda_device_name": "NVIDIA GeForce RTX 5090",
+    "cuda_capability": [
+      12,
+      0
+    ],
+    "cuda_total_memory_gb": 31.358337
+  },
+  "selected": {
+    "batch_size": 4,
+    "accumulation_steps": 8,
+    "gradient_checkpointing": 1
+  },
+  "measurement": {
+    "status": "passed",
+    "updates": 3,
+    "steady_updates": 2,
+    "steady_update_seconds": 6.770252738147974,
+    "peak_memory_gb": 19.954040050506592,
+    "metrics_sha256": "dacca8f923a55bcb4ece10632d24f19cc4a78522e951df841014a82205222ad2",
+    "checkpoint": {
+      "path": "/root/autodl-tmp/sophia/sft_target_prep/recipe_measurement_muon/selected_probe/checkpoints/ckpt_step3.pt",
+      "sha256": "b28f40bf81ffb59e26a9369ee4da1827e13dc3ca72988dc5f89e20ca4510091f",
+      "step": 3
+    }
+  },
+  "candidates": [
+    {
+      "candidate": {
+        "batch_size": 1,
+        "accumulation_steps": 32,
+        "gradient_checkpointing": 1
+      },
+      "output_dir": "/root/autodl-tmp/sophia/sft_target_prep/recipe_measurement_muon/candidate_00",
+      "wall_time_seconds": 264.5929043907672,
+      "returncode": 0,
+      "status": "passed",
+      "updates": 3,
+      "steady_updates": 2,
+      "steady_update_seconds": 13.28403700236231,
+      "peak_memory_gb": 13.614836692810059,
+      "metrics_sha256": "481bea0179711b9c345640053de12ec3f906052033a56a5b183565385b163d2f",
+      "losses": [
+        4.547152042388916,
+        4.684124946594238,
+        4.560635566711426
+      ]
+    },
+    {
+      "candidate": {
+        "batch_size": 2,
+        "accumulation_steps": 16,
+        "gradient_checkpointing": 1
+      },
+      "output_dir": "/root/autodl-tmp/sophia/sft_target_prep/recipe_measurement_muon/candidate_01",
+      "wall_time_seconds": 252.11212093383074,
+      "returncode": 0,
+      "status": "passed",
+      "updates": 3,
+      "steady_updates": 2,
+      "steady_update_seconds": 8.517209719866514,
+      "peak_memory_gb": 15.784633159637451,
+      "metrics_sha256": "5892877d863ccb6f30f36ea447375d8e52c365fcfe3547b370dac2b78e89b0ec",
+      "losses": [
+        4.632545471191406,
+        4.760087966918945,
+        4.688509464263916
+      ]
+    },
+    {
+      "candidate": {
+        "batch_size": 4,
+        "accumulation_steps": 8,
+        "gradient_checkpointing": 1
+      },
+      "output_dir": "/root/autodl-tmp/sophia/sft_target_prep/recipe_measurement_muon/candidate_02",
+      "wall_time_seconds": 246.57589481584728,
+      "returncode": 0,
+      "status": "passed",
+      "updates": 3,
+      "steady_updates": 2,
+      "steady_update_seconds": 6.766482934355736,
+      "peak_memory_gb": 19.954040050506592,
+      "metrics_sha256": "e3ae63e0f0d46778e04f3a76a022f91a6259676564fca2d922c1ba4c80242e2c",
+      "losses": [
+        4.623839855194092,
+        4.513012886047363,
+        4.788151264190674
+      ]
+    },
+    {
+      "candidate": {
+        "batch_size": 8,
+        "accumulation_steps": 4,
+        "gradient_checkpointing": 1
+      },
+      "output_dir": "/root/autodl-tmp/sophia/sft_target_prep/recipe_measurement_muon/candidate_03",
+      "wall_time_seconds": 250.31782352551818,
+      "returncode": 1,
+      "status": "failed",
+      "stdout_tail": "",
+      "stderr_tail": "icro\n    return _run_micro_impl(\n           ^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/training/pretrain/engine/step_runner_impl.py\", line 161, in _run_micro_impl\n    loss_sum.backward()\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\", line 647, in backward\n    torch.autograd.backward(\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\", line 354, in backward\n    _engine_run_backward(\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\", line 829, in _engine_run_backward\n    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/function.py\", line 311, in apply\n    return user_fn(self, *args)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/ops/fla-kda-cuda-src/fla/utils/_decorators.py\", line 152, in wrapper\n    return fn(*processed_args, **processed_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/amp/autocast_mode.py\", line 563, in decorate_bwd\n    return bwd(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/ops/fla-kda-cuda-src/fla/ops/kda/chunk.py\", line 167, in backward\n    dq = l2norm_bwd(q, q_rstd, dq)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py\", line 929, in _fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/ops/fla-kda-cuda-src/fla/ops/backends/__init__.py\", line 214, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/ops/fla-kda-cuda-src/fla/modules/l2norm.py\", line 229, in l2norm_bwd\n    l2norm_bwd_kernel[grid](\n  File \"/root/miniconda3/lib/python3.12/site-packages/triton/runtime/jit.py\", line 390, in <lambda>\n    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/ops/fla-kda-cuda-src/fla/ops/utils/cache.py\", line 378, in run\n    return super().run(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/triton/runtime/autotuner.py\", line 237, in run\n    used_cached_result = self.check_disk_cache(key, pruned_configs, benchmark)\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/triton/runtime/autotuner.py\", line 201, in check_disk_cache\n    bench_fn()\n  File \"/root/miniconda3/lib/python3.12/site-packages/triton/runtime/autotuner.py\", line 228, in benchmark\n    timings = {config: self._bench(*args, config=config, **kwargs) for config in pruned_configs}\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/triton/runtime/autotuner.py\", line 160, in _bench\n    return self.do_bench(kernel_call, quantiles=(0.5, 0.2, 0.8))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/triton/testing.py\", line 149, in do_bench\n    fn()\n  File \"/root/miniconda3/lib/python3.12/site-packages/triton/runtime/autotuner.py\", line 146, in kernel_call\n    self.fn.run(\n  File \"/root/miniconda3/lib/python3.12/site-packages/triton/runtime/jit.py\", line 617, in run\n    kernel.run(grid_0, grid_1, grid_2, stream, kernel.function, kernel.packed_metadata, launch_metadata,\n  File \"/root/miniconda3/lib/python3.12/site-packages/triton/backends/nvidia/driver.py\", line 708, in __call__\n    self.launch(gridX, gridY, gridZ, stream, function, self.launch_cooperative_grid, self.launch_pdl,\nRuntimeError: Triton Error [CUDA]: out of memory\n"
+    },
+    {
+      "candidate": {
+        "batch_size": 16,
+        "accumulation_steps": 2,
+        "gradient_checkpointing": 1
+      },
+      "output_dir": "/root/autodl-tmp/sophia/sft_target_prep/recipe_measurement_muon/candidate_04",
+      "wall_time_seconds": 234.2933747395873,
+      "returncode": 1,
+      "status": "failed",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/cli/sft_train.py\", line 83, in <module>\n    raise SystemExit(run_cli(main))\n                     ^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/cli/support.py\", line 11, in run_cli\n    result = entrypoint()\n             ^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/cli/sft_train.py\", line 56, in main\n    result = run_sft(\n             ^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/training/sft/trainer.py\", line 711, in run_sft\n    result = run_train_update(\n             ^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/training/pretrain/engine/train_step.py\", line 199, in run_train_update\n    accumulated = runner.run_update(\n                  ^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/training/pretrain/engine/step_runner_impl.py\", line 105, in run_update\n    micro_out = self.run_micro(\n                ^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/training/pretrain/engine/step_runner_impl.py\", line 196, in run_micro\n    return _run_micro_impl(\n           ^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/training/pretrain/engine/step_runner_impl.py\", line 161, in _run_micro_impl\n    loss_sum.backward()\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\", line 647, in backward\n    torch.autograd.backward(\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\", line 354, in backward\n    _engine_run_backward(\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\", line 829, in _engine_run_backward\n    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.11 GiB. GPU 0 has a total capacity of 31.36 GiB of which 447.62 MiB is free. Including non-PyTorch memory, this process has 30.91 GiB memory in use. Of the allocated memory 26.50 GiB is allocated by PyTorch, and 3.79 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n"
+    },
+    {
+      "candidate": {
+        "batch_size": 1,
+        "accumulation_steps": 32,
+        "gradient_checkpointing": 0
+      },
+      "output_dir": "/root/autodl-tmp/sophia/sft_target_prep/recipe_measurement_muon/candidate_05",
+      "wall_time_seconds": 230.15434422902763,
+      "returncode": 1,
+      "status": "failed",
+      "stdout_tail": "",
+      "stderr_tail": "l(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/modeling/decoder_forward.py\", line 146, in forward\n    return self._forward_full_decoder(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/modeling/decoder_forward.py\", line 56, in _forward_full_decoder\n    loss, logits, next_cache = forward_decoder_full(\n                               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/modeling/decoder_full.py\", line 111, in forward_decoder_full\n    loss = forward_loss(\n           ^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/modeling/decoder_loss_forward.py\", line 26, in forward_loss\n    hidden, _ = runtime_model._forward_hidden(input_ids, start_pos=0)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/runtime/model/transformer.py\", line 222, in _forward_hidden\n    return self._run_main_layers(hidden, start_pos), None\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/runtime/model/transformer.py\", line 209, in _run_main_layers\n    hidden, completed_blocks = layer(\n                               ^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/runtime/model/blocks.py\", line 85, in forward\n    ffn_input = self.ffn_residual(partial_block, completed_blocks)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/runtime/model/blocks.py\", line 44, in forward\n    keys = self.norm(values)\n           ^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/sophia/project_27b4ec2/ml/runtime/model/ops.py\", line 59, in forward\n    return functional.rms_norm(\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/nn/functional.py\", line 2924, in rms_norm\n    return torch.rms_norm(input, normalized_shape, weight, eps)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 64.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 63.62 MiB is free. Including non-PyTorch memory, this process has 31.29 GiB memory in use. Of the allocated memory 28.17 GiB is allocated by PyTorch, and 2.49 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n"
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "bytes": 49653836,
+  "files": 16,
+  "raw_root": "H:\\Sophia\\dataset\\benchmarks_raw_v2",
+  "schema": "sophia_benchmark_source_inventory_v1",
+  "selection_path": "H:\\Sophia/configs/eval/pretrain_decontamination_source_selection.json",
+  "selection_sha256": "57aa10f6008a39a2019fd96d0ecda84defb9d7d4c73a303a6794c3fe36bf36c4",
+  "sources": [
+    {
+      "files": [
+        {
+          "bytes": 419088,
+          "config": "main",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/gsm8k/main/test/part-00000.parquet",
+          "sha256": "ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59",
+          "split": "test",
+          "url": "https://huggingface.co/datasets/openai/gsm8k/resolve/refs%2Fconvert%2Fparquet/main/test/0000.parquet"
+        },
+        {
+          "bytes": 2306545,
+          "config": "main",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/gsm8k/main/train/part-00000.parquet",
+          "sha256": "ea82612ea9582142387730c793eb67d3b12849002bc0b7fa6f8efafa7351419d",
+          "split": "train",
+          "url": "https://huggingface.co/datasets/openai/gsm8k/resolve/refs%2Fconvert%2Fparquet/main/train/0000.parquet"
+        }
+      ],
+      "license": "mit",
+      "name": "gsm8k",
+      "repo_id": "openai/gsm8k",
+      "revision": "740312add88f781978c0658806c59bc2815b9866"
+    },
+    {
+      "files": [
+        {
+          "bytes": 4848345,
+          "config": "default",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/math/default/train/part-00000.parquet",
+          "sha256": "2325458edc03d786939ee9e1e5795efb9e2480247b6e1ed2c51f41bea7369c6a",
+          "split": "train",
+          "url": "https://huggingface.co/datasets/qwedsacf/competition_math/resolve/refs%2Fconvert%2Fparquet/default/train/0000.parquet"
+        }
+      ],
+      "license": "mit",
+      "name": "math",
+      "repo_id": "qwedsacf/competition_math",
+      "revision": "e839825f9ec5c6cfa585c654a59610969ec13993"
+    },
+    {
+      "files": [
+        {
+          "bytes": 76504,
+          "config": "all",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/mmlu/all/dev/part-00000.parquet",
+          "sha256": "2b19bde1ed8ca6b482fb283abc90e8e0d9d228947029c0b91795d64b28b3bc3f",
+          "split": "dev",
+          "url": "https://huggingface.co/datasets/cais/mmlu/resolve/refs%2Fconvert%2Fparquet/all/dev/0000.parquet"
+        },
+        {
+          "bytes": 3504718,
+          "config": "all",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/mmlu/all/test/part-00000.parquet",
+          "sha256": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7",
+          "split": "test",
+          "url": "https://huggingface.co/datasets/cais/mmlu/resolve/refs%2Fconvert%2Fparquet/all/test/0000.parquet"
+        },
+        {
+          "bytes": 408449,
+          "config": "all",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/mmlu/all/validation/part-00000.parquet",
+          "sha256": "66cdf0b090ccb657d18d13cd81e31fdc55c3467da9642ffb178653268a97c8ef",
+          "split": "validation",
+          "url": "https://huggingface.co/datasets/cais/mmlu/resolve/refs%2Fconvert%2Fparquet/all/validation/0000.parquet"
+        }
+      ],
+      "license": "mit",
+      "name": "mmlu",
+      "repo_id": "cais/mmlu",
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe"
+    },
+    {
+      "files": [
+        {
+          "bytes": 203808,
+          "config": "ARC-Challenge",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/arc/ARC-Challenge/test/part-00000.parquet",
+          "sha256": "62f03257e737aed263f55c6abf87c7bb0028a44a6bdd2a26eb1279eb42c1d1e9",
+          "split": "test",
+          "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/refs%2Fconvert%2Fparquet/ARC-Challenge/test/0000.parquet"
+        },
+        {
+          "bytes": 189909,
+          "config": "ARC-Challenge",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/arc/ARC-Challenge/train/part-00000.parquet",
+          "sha256": "e488c1587ffdcfc8443f916c53488a95cd471c5790e0746c6bfe4cecf20962cb",
+          "split": "train",
+          "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/refs%2Fconvert%2Fparquet/ARC-Challenge/train/0000.parquet"
+        },
+        {
+          "bytes": 55743,
+          "config": "ARC-Challenge",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/arc/ARC-Challenge/validation/part-00000.parquet",
+          "sha256": "395a5c88d1580d69855fbaee9450270578df1ad5af6259771cd0a42c20e99f05",
+          "split": "validation",
+          "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/refs%2Fconvert%2Fparquet/ARC-Challenge/validation/0000.parquet"
+        },
+        {
+          "bytes": 346257,
+          "config": "ARC-Easy",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/arc/ARC-Easy/test/part-00000.parquet",
+          "sha256": "4160597d618ae851c7eb04e281574f3f654776216ac6b6641588d64527b47177",
+          "split": "test",
+          "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/refs%2Fconvert%2Fparquet/ARC-Easy/test/0000.parquet"
+        },
+        {
+          "bytes": 330598,
+          "config": "ARC-Easy",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/arc/ARC-Easy/train/part-00000.parquet",
+          "sha256": "b315db8a4be597dc7daa50a4e70d48dd7c990c32085629e6ccd8c926beaa80b5",
+          "split": "train",
+          "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/refs%2Fconvert%2Fparquet/ARC-Easy/train/0000.parquet"
+        },
+        {
+          "bytes": 86080,
+          "config": "ARC-Easy",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/arc/ARC-Easy/validation/part-00000.parquet",
+          "sha256": "ed890ff1e4cef7a7140d3a30dcea3ed2c9d467c6458f447ad9ef0176d8dcbb74",
+          "split": "validation",
+          "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/refs%2Fconvert%2Fparquet/ARC-Easy/validation/0000.parquet"
+        }
+      ],
+      "license": "cc-by-sa-4.0",
+      "name": "arc",
+      "repo_id": "allenai/ai2_arc",
+      "revision": "210d026faf9955653af8916fad021475a3f00453"
+    },
+    {
+      "files": [
+        {
+          "bytes": 6112397,
+          "config": "default",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/hellaswag/default/test/part-00000.parquet",
+          "sha256": "e572fd5579bd1768b1985f47234f8bbe29247aca200a778b635bffc637714a41",
+          "split": "test",
+          "url": "https://huggingface.co/datasets/Rowan/hellaswag/resolve/refs%2Fconvert%2Fparquet/default/test/0000.parquet"
+        },
+        {
+          "bytes": 24365524,
+          "config": "default",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/hellaswag/default/train/part-00000.parquet",
+          "sha256": "cacb12587faa63d7f723a72d61d12bfa94b140446f5a6a0a2e1c6906ab88bf02",
+          "split": "train",
+          "url": "https://huggingface.co/datasets/Rowan/hellaswag/resolve/refs%2Fconvert%2Fparquet/default/train/0000.parquet"
+        },
+        {
+          "bytes": 6315951,
+          "config": "default",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/hellaswag/default/validation/part-00000.parquet",
+          "sha256": "899813071e1e95efafec90f856e1987d2150fa4d020fc005df6962c259f660cd",
+          "split": "validation",
+          "url": "https://huggingface.co/datasets/Rowan/hellaswag/resolve/refs%2Fconvert%2Fparquet/default/validation/0000.parquet"
+        }
+      ],
+      "license": "mit-original-repository",
+      "name": "hellaswag",
+      "repo_id": "Rowan/hellaswag",
+      "revision": "218ec52e09a7e7462a5400043bb9a69a41d06b76"
+    },
+    {
+      "files": [
+        {
+          "bytes": 83920,
+          "config": "openai_humaneval",
+          "path": "H:\\Sophia\\dataset\\benchmarks_raw_v2/humaneval/openai_humaneval/test/part-00000.parquet",
+          "sha256": "2f2871a15fbc95b6c683043359f4ed8e144c5a1c4f24f25f66bc51f598dfcfb6",
+          "split": "test",
+          "url": "https://huggingface.co/datasets/openai/openai_humaneval/resolve/refs%2Fconvert%2Fparquet/openai_humaneval/test/0000.parquet"
+        }
+      ],
+      "license": "mit",
+      "name": "humaneval",
+      "repo_id": "openai/openai_humaneval",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544"
+    }
+  ]
+}

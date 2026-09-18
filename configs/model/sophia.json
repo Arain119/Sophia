@@ -1,0 +1,52 @@
+{
+  "schema": "sophia_hybrid_model_spec_v1",
+  "model": {
+    "vocab_size": 65536,
+    "dim": 1536,
+    "n_layers": 28,
+    "num_heads": 16,
+    "head_dim": 128,
+    "ffn_hidden": 3968,
+    "kda_decay_rank": 128,
+    "kda_output_gate_rank": 128,
+    "kda_output_gate_full_rank": true,
+    "kda_decay_lower_bound": -5.0,
+    "kda_dt_min": 0.001,
+    "kda_dt_max": 0.1,
+    "kda_dt_floor": 0.0001,
+    "kda_a_log_init": 0.0,
+    "mla_q_rank": 384,
+    "mla_kv_rank": 128,
+    "short_conv_kernel": 4,
+    "attn_res_block_size": 4,
+    "situ_gate_softcap": 4.0,
+    "situ_up_softcap": 25.0,
+    "norm_eps": 1e-5,
+    "max_seq_len": 4096,
+    "max_batch_size": 4,
+    "dropout": 0.0,
+    "initializer_range": 0.02,
+    "kda_backend": "auto"
+  },
+  "architecture": {
+    "layer_pattern": ["kda", "kda", "kda", "mla"],
+    "pattern_repetitions": 7,
+    "position_encoding": "nope",
+    "embedding_tying": true,
+    "residual": "block_attention_residuals",
+    "ffn": "dense_situ_glu",
+    "context_length": 4096
+  },
+  "parameter_count": {
+    "unique_parameters": 1012630480,
+    "method": "meta_device_runtime_instantiation_unique_parameters",
+    "evidence": "configs/model/shape_study.json"
+  },
+  "tokenizer": {
+    "path": "ml/modeling/text",
+    "vocab_size": 65536,
+    "model_max_length": 16384,
+    "bundle_sha1": "abfcdb43c161a541e08ffb2cbc3794cd2fdc189f",
+    "tokenizer_json_sha256": "93b73d36bff96ba462f1e5f9f78fb2a40e219f8b562929b1919ca6cdf3912980"
+  }
+}

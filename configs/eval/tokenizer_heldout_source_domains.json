@@ -1,0 +1,36 @@
+{
+  "schema": "sophia_tokenizer_heldout_source_domains_v1",
+  "domains": {
+    "native_chinese": [
+      "opencsg_fineweb_edu_zh_3_4_humanities_v1",
+      "opencsg_fineweb_edu_zh_4_5_full_v6",
+      "skypile_diverse_chinese_web_v1",
+      "wikimedia_wikisource_zh_20231201_v2",
+      "wikimedia_zhwiki_20260701_v1",
+      "wikimedia_zhwikibooks_20260701_v1",
+      "wikimedia_zhwikinews_20260701_v1",
+      "wikimedia_zhwikiquote_20260701_v1",
+      "wikimedia_zhwikiversity_20260701_v1",
+      "zhihu_kol_modern_chinese_qa_v1"
+    ],
+    "english": [
+      "common_pile_doab_filtered_v2",
+      "common_pile_libretexts_filtered_v2",
+      "common_pile_pre_1929_books_filtered_v2",
+      "common_pile_pressbooks_filtered_v2",
+      "common_pile_pubmed_filtered_v2",
+      "fineweb_edu_english_dedup_v1",
+      "wikimedia_enwiki_20260701_v1"
+    ],
+    "code": [
+      "common_pile_stackv2_edu_filtered_v2",
+      "github_code_clean_permissive_v1",
+      "the_stack_smol_xl_permissive_v1"
+    ],
+    "math": [
+      "common_pile_arxiv_papers_filtered_v2",
+      "finemath_3plus_v1",
+      "finemath_4plus_v1"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "by_capability": {
+    "code": 200,
+    "fact": 100,
+    "logic": 400,
+    "math": 1200,
+    "science": 100
+  },
+  "by_language": {
+    "en": 1000,
+    "zh": 1000
+  },
+  "case_count": 2000,
+  "construction": "deterministic_project_authored_templates_and_stable_facts",
+  "decontamination_signatures_path": "configs/eval/generation_quality_decontamination.jsonl",
+  "decontamination_signatures_sha256": "0f8cc779d81c6c2f3c58e495184a88ed6ca8c2c85cce275c644c56d59f703397",
+  "schema": "sophia_generation_quality_suite_build_v1",
+  "signature_count": 4000,
+  "status": "complete",
+  "suite_path": "configs/eval/generation_quality.jsonl",
+  "suite_schema": "sophia_generation_quality_suite_v2",
+  "suite_sha256": "1c7426c0f0945d8caf4b70bb56bc9b5f09ca726e0cbf5a7d52f884d2e277799c"
+}

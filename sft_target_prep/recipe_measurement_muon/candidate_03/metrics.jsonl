@@ -1,0 +1,2 @@
+{"type": "start", "time": 1788329371.7091792, "step": 0, "total_steps": 7093, "seen_supervised_tokens": 0, "contract_sha256": "e3cc75891c8cf2b642c870afa515aed378f4c2ed94a35ceeffc18201838a721b"}
+{"type": "train", "time": 1788329381.9824128, "step": 1, "loss": 4.68510103225708, "grad_norm": 18.966663360595703, "lr": 1.4084507042253522e-07, "supervised_tokens": 20529, "seen_supervised_tokens": 20529, "update_seconds": 10.271624967455864, "max_memory_gb": 18.9654598236084}

@@ -1,0 +1,58 @@
+{
+  "schema": "sophia_sft_probe_run_v1",
+  "status": "probe_stopped",
+  "completed_at": 1788328649.1372597,
+  "start_step": 0,
+  "stop_step": 3,
+  "seen_supervised_tokens": 74921,
+  "contract": {
+    "schema": "sophia_sft_trainer_v1",
+    "semantic_recipe_sha256": "13cc3630957a06077cc5713122756eec9037351d19790d35f37febf36c58609c",
+    "machine_recipe_sha256": null,
+    "probe_audit_sha256": null,
+    "dataset_manifest_sha256": "56f4b5ad041850ba9b99797c7c5d2dfda99a229167c50014b3dc0374b554adf0",
+    "dataset_split": "train",
+    "tokenizer_json_sha256": "93b73d36bff96ba462f1e5f9f78fb2a40e219f8b562929b1919ca6cdf3912980",
+    "model_spec_sha256": "b753fefc7c8b58c5fccf5feca503e874cff34b8b404c9efbf3cd2ffdce6a3ec2",
+    "model_semantic_sha256": "9d5d0e86ea52ffefcd356885612599387ace908daca951807661be5e72439840",
+    "parent_checkpoint_sha256": "9f55fba52cae04c9cf9f27f9e44dafd2c3cfaf265c03bab4e21c7ac6f4b55aa0",
+    "parent_validation_sha256": "5664f2c622e0535df7cbc1ca36997967824c41c2b1ca4ea44363eaeefb995095",
+    "seed": 42,
+    "batch_size": 1,
+    "accumulation_steps": 32,
+    "epochs": 3,
+    "learning_rate": 1e-05,
+    "weight_decay": 0.1,
+    "total_steps": 7093,
+    "warmup_steps": 71,
+    "warmup_ratio": 0.01,
+    "min_lr_ratio": 0.1,
+    "optimizer": "torch_muon_hybrid",
+    "qk_clip": {
+      "enabled": true,
+      "threshold": 100.0
+    },
+    "loss": "completion_only_ignore_index_-100",
+    "gradient_checkpointing": true,
+    "length_group_window": 256,
+    "run_mode": "probe",
+    "machine_signature": {
+      "schema": "sft_machine_adaptive_v1",
+      "device_type": "cuda",
+      "torch": "2.8.0+cu128",
+      "cuda": "12.8",
+      "platform": "linux",
+      "machine": "x86_64",
+      "cuda_device_name": "NVIDIA GeForce RTX 5090",
+      "cuda_capability": [
+        12,
+        0
+      ],
+      "cuda_total_memory_gb": 31.358337
+    },
+    "context_length": 4096
+  },
+  "contract_sha256": "198b922bfe3c8a66892683685b83d54c0714432182f2da57252c1dea5ad63a8a",
+  "metrics_sha256": "481bea0179711b9c345640053de12ec3f906052033a56a5b183565385b163d2f",
+  "checkpoint": null
+}

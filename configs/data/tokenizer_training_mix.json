@@ -1,0 +1,15 @@
+{
+  "schema": "sophia_tokenizer_training_bucket_budget_v1",
+  "bucket_budgets": {
+    "pretrain/wikimedia_wikipedia_zh_20231101": 78643200,
+    "pretrain/opencsg_fineweb_edu_zh_4_5": 78643200,
+    "pretrain/huggingfacetb_finemath_4plus": 8388608,
+    "pretrain/pleias_common_corpus_open_en": 5242880,
+    "pretrain/python_cpython": 25165824,
+    "pretrain/golang_go": 25165824,
+    "pretrain/rust_lang_rust": 25165824,
+    "pretrain/microsoft_typescript": 10485760,
+    "pretrain/json_schema_test_suite": 4194304,
+    "pretrain/model_context_protocol": 2097152
+  }
+}

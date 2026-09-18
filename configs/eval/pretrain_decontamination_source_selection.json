@@ -1,0 +1,63 @@
+{
+  "schema": "sophia_benchmark_source_selection_v1",
+  "purpose": "Pinned evaluation prompts excluded from the new random-initialization pretraining corpus",
+  "metadata_endpoint": "https://huggingface.co",
+  "parquet_api": "https://datasets-server.huggingface.co/parquet",
+  "sources": [
+    {
+      "name": "gsm8k",
+      "repo_id": "openai/gsm8k",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "license": "mit",
+      "selections": [
+        {"config": "main", "splits": ["train", "test"]}
+      ]
+    },
+    {
+      "name": "math",
+      "repo_id": "qwedsacf/competition_math",
+      "revision": "e839825f9ec5c6cfa585c654a59610969ec13993",
+      "license": "mit",
+      "selections": [
+        {"config": "default", "splits": ["train"]}
+      ]
+    },
+    {
+      "name": "mmlu",
+      "repo_id": "cais/mmlu",
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "license": "mit",
+      "selections": [
+        {"config": "all", "splits": ["dev", "validation", "test"]}
+      ]
+    },
+    {
+      "name": "arc",
+      "repo_id": "allenai/ai2_arc",
+      "revision": "210d026faf9955653af8916fad021475a3f00453",
+      "license": "cc-by-sa-4.0",
+      "selections": [
+        {"config": "ARC-Challenge", "splits": ["train", "validation", "test"]},
+        {"config": "ARC-Easy", "splits": ["train", "validation", "test"]}
+      ]
+    },
+    {
+      "name": "hellaswag",
+      "repo_id": "Rowan/hellaswag",
+      "revision": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+      "license": "mit-original-repository",
+      "selections": [
+        {"config": "default", "splits": ["train", "validation", "test"]}
+      ]
+    },
+    {
+      "name": "humaneval",
+      "repo_id": "openai/openai_humaneval",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "selections": [
+        {"config": "openai_humaneval", "splits": ["test"]}
+      ]
+    }
+  ]
+}

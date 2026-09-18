@@ -1,0 +1,90 @@
+{
+  "schema": "sophia_pretrain_base_checkpoint_policy_v1",
+  "status": "fixed_before_target_training",
+  "purpose": "Define checkpoint persistence, restart integrity, and final-model evidence for the formal seed-42 run.",
+  "evaluation_assets": {
+    "full_generation_suite": {
+      "path": "configs/eval/generation_quality.jsonl",
+      "sha256": "1c7426c0f0945d8caf4b70bb56bc9b5f09ca726e0cbf5a7d52f884d2e277799c",
+      "cases": 2000,
+      "required_prompt_formats": ["raw"],
+      "decode": {"do_sample": 0, "max_new_tokens": 64, "seed": 2026}
+    },
+    "generation_decontamination_signatures": {
+      "path": "configs/eval/generation_quality_decontamination.jsonl",
+      "sha256": "0f8cc779d81c6c2f3c58e495184a88ed6ca8c2c85cce275c644c56d59f703397",
+      "signatures": 4000
+    },
+    "chinese_multiple_choice": {
+      "path": "dataset/benchmarks/chinese_multiple_choice.jsonl",
+      "sha256": "c99968173b45b3945506c9ece698d8a26a37f843f9a93549607a51ec0e051ddb",
+      "cases": 25865
+    },
+    "full_benchmark_decontamination": {
+      "path": "dataset/benchmarks/benchmark_prompt_signatures.jsonl",
+      "sha256": "7c796744207d7b2ba62b20467d189131360cabd02b01728e65e9c1e02dcd8714",
+      "signatures": 127292
+    }
+  },
+  "cadence": {
+    "train_metrics_every_updates": 10,
+    "full_checkpoint_every_updates": 100,
+    "evaluate_final_checkpoint": true
+  },
+  "checkpoint_persistence": {
+    "format": "full_model_optimizer_scheduler_rng_and_data_cursor",
+    "async_checkpoint": true,
+    "keep_latest_full": 6,
+    "retention_rationale": "Keep the six latest complete restart points. A 100-update cadence limits an unexpected interruption to about 2.1 hours at the measured target throughput while keeping the fixed six-checkpoint disk bound.",
+    "write_sha256_after_atomic_publish": true,
+    "output_filesystem": "linux_native_only",
+    "overwrite_output_dir": false,
+    "best_alias_rule": "disabled"
+  },
+  "immediate_stop_rules": [
+    "non_finite_loss_gradient_parameter_or_optimizer_state",
+    "tokenizer_manifest_or_data_lineage_fingerprint_drift",
+    "machine_signature_or_signed_recipe_mismatch",
+    "checkpoint_atomic_publish_or_post_write_hash_failure",
+    "disk_free_space_below_release_preflight_minimum"
+  ],
+  "restart_policy": {
+    "resume_allowed_for": [
+      "host_or_ssh_interruption",
+      "platform_preemption",
+      "transient_network_or_logging_failure",
+      "process_crash_with_no_numerical_or_integrity_gate_failure"
+    ],
+    "resume_requirements": [
+      "latest_checkpoint_passes_load_and_hash_audit",
+      "same_signed_machine_recipe_and_machine_signature",
+      "same_model_tokenizer_and_all_data_manifest_fingerprints",
+      "rng_optimizer_scheduler_data_cursor_and_step_restore_exactly",
+      "resume_drill_report_passes_before_formal_launch"
+    ],
+    "fresh_run_required_for": [
+      "learning_rate_optimizer_or_initialization_change",
+      "model_tokenizer_data_mix_or_training_context_change",
+      "oom_under_the_signed_recipe",
+      "non_finite_training_state",
+      "checkpoint_or_lineage_integrity_failure"
+    ],
+    "forbidden": [
+      "mutating_learning_rate_inside_an_existing_checkpoint_trajectory",
+      "resuming_on_a_different_machine_signature",
+      "skipping_failed_preflight_gates",
+      "using_overwrite_output_dir"
+    ]
+  },
+  "release_evidence": {
+    "required_reports": [
+      "per_source_validation_and_test_perplexity",
+      "raw_generation_quality_2000",
+      "restricted_executable_math_and_code",
+      "chinese_multiple_choice",
+      "training_stability_and_optimizer_diagnostics",
+      "checkpoint_hash_and_lineage_audit"
+    ],
+    "metric_rule": "All declared metrics must exist and be finite; rate metrics must be within [0, 1]. Metrics are reported, not used to select or reject the single final checkpoint."
+  }
+}

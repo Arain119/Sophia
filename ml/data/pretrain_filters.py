@@ -1,0 +1,149 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+import re
+import unicodedata
+import zlib
+
+
+_WS_RE = re.compile(r"\s+")
+_SENT_SPLIT_RE = re.compile(
+    r"(?:[。！？；!?;]+|(?<!\d)\.(?:\s+|$)|\n+)",
+    re.MULTILINE,
+)
+
+
+def normalize_for_poison_scan(text: str) -> str:
+    """
+    Normalize text for poison / junk detection.
+
+    Current policy is conservative: strip whitespace only. We do NOT lowercase or
+    otherwise rewrite content so that any downstream hashing/debugging can be
+    stable and reversible.
+    """
+
+    return _WS_RE.sub("", str(text or ""))
+
+
+def is_poison_repetitive_text(
+    text: str,
+    *,
+    min_chars: int = 800,
+    zlib_level: int = 1,
+    compression_ratio_lt: float = 0.15,
+    distinct2_lt: float = 0.12,
+) -> bool:
+    """
+    Heuristic poison detector for extreme low-entropy / highly repetitive text.
+
+    This targets samples that can dominate training loss with garbage patterns
+    (e.g., `*_*_*` spam, repeated phrases, bracket noise).
+
+    The detector is intentionally conservative:
+    - Only scans after whitespace removal
+    - Only activates above `min_chars`
+    - Requires BOTH unusually good compression AND low local diversity (char bigram distinct-2)
+    """
+
+    norm = normalize_for_poison_scan(text)
+    if len(norm) < int(min_chars):
+        return False
+
+    data = norm.encode("utf-8", errors="ignore")
+    if not data:
+        return False
+
+    level = int(zlib_level)
+    if level < 0 or level > 9:
+        raise ValueError("zlib_level must be in [0, 9]")
+
+    compressed = zlib.compress(data, level)
+    ratio = float(len(compressed)) / float(len(data))
+    if ratio >= float(compression_ratio_lt):
+        return False
+
+    if len(norm) < 2:
+        return False
+    total = int(len(norm) - 1)
+    bigrams = {norm[index : index + 2] for index in range(total)}
+    distinct2 = float(len(bigrams)) / float(total)
+    return distinct2 < float(distinct2_lt)
+
+
+def has_repeated_sentences(
+    text: str,
+    *,
+    min_sentence_chars: int = 12,
+    repeats: int = 3,
+    minimum_repeated_chars: int = 240,
+    minimum_repeated_fraction: float = 0.08,
+) -> bool:
+    s = str(text or "").replace("\r", "").strip()
+    if not s:
+        return False
+    parts = [part.strip() for part in _SENT_SPLIT_RE.split(s) if part.strip()]
+    if not parts:
+        return False
+    seen: dict[str, int] = {}
+    for part in parts:
+        if len(part) < int(min_sentence_chars):
+            continue
+        normalized = _WS_RE.sub(" ", part).casefold()
+        seen[normalized] = seen.get(normalized, 0) + 1
+    repeated_characters = sum(
+        len(part) * count for part, count in seen.items() if count >= int(repeats)
+    )
+    content_characters = len(normalize_for_poison_scan(s))
+    return repeated_characters >= max(
+        int(minimum_repeated_chars),
+        int(content_characters * float(minimum_repeated_fraction)),
+    )
+
+
+def repeated_sentence_excess(
+    text: str,
+    *,
+    min_sentence_chars: int = 20,
+    repeats: int = 2,
+) -> tuple[int, float]:
+    """Return repeated sentence characters beyond the first occurrence."""
+
+    s = str(text or "").replace("\r", "").strip()
+    if not s:
+        return 0, 0.0
+    seen: dict[str, int] = {}
+    for part in _SENT_SPLIT_RE.split(s):
+        stripped = part.strip()
+        if len(stripped) < int(min_sentence_chars):
+            continue
+        normalized = _WS_RE.sub(" ", stripped).casefold()
+        seen[normalized] = seen.get(normalized, 0) + 1
+    repeated_characters = sum(
+        len(sentence) * (count - 1)
+        for sentence, count in seen.items()
+        if count >= int(repeats)
+    )
+    content_characters = len(normalize_for_poison_scan(s))
+    if content_characters <= 0:
+        return 0, 0.0
+    return repeated_characters, float(repeated_characters) / float(content_characters)
+
+
+def normalize_text(text: str) -> str:
+    s = str(text or "").replace("\u0000", "")
+    s = s.replace("\r\n", "\n").replace("\r", "\n")
+    s = s.replace("\ufffd", "")
+    s = unicodedata.normalize("NFC", s)
+    s = "".join(
+        character
+        for character in s
+        if character in {"\n", "\t"}
+        or unicodedata.category(character) not in {"Cc", "Cf"}
+    )
+    return s.strip("\ufeff").strip()
+
+
+@dataclass(frozen=True)
+class CleanResult:
+    text: str
+    drop_reason: str

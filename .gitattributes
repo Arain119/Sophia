@@ -1,0 +1,26 @@
+# Normalize text files to LF in the repo to avoid CRLF churn across platforms.
+* text=auto eol=lf
+
+# Keep Windows-native script line endings.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Large model/tokenizer artifacts: avoid line-ending conversion and noisy diffs.
+model/tokenizer.json -text
+model/tokenizer.model -text
+model/tokenizer.vocab -text
+model/special_tokens_map.json -text
+
+# Tokenizer fingerprints cover exact bytes; never normalize their line endings.
+ml/modeling/text/tokenizer.json -text -diff
+ml/modeling/text/tokenizer_config.json -text -diff
+ml/modeling/text/chat_template.jinja -text -diff
+ml/modeling/text/special_tokens_map.json -text -diff
+
+*.bin -text
+*.pt -text
+*.pth -text
+*.safetensors -text
+*.npy -text
+*.npz -text

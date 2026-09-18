@@ -1,0 +1,16 @@
+{
+  "schema": "sophia_api_budget_ledger",
+  "currency": "USD",
+  "limit_usd": 50.0,
+  "provider": "claude-haiku-4-5",
+  "historical_usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0,
+    "reports": [
+      "handoff_baseline_excludes_prior_distillation"
+    ]
+  },
+  "remaining_usd": 50.0,
+  "policy": "fail_closed_after_handoff_spend_reaches_limit"
+}

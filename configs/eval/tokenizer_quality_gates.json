@@ -1,0 +1,37 @@
+{
+  "schema": "sophia_tokenizer_quality_gates_v1",
+  "required_vocab_size": 65536,
+  "required_bundle_sha1": "abfcdb43c161a541e08ffb2cbc3794cd2fdc189f",
+  "minimum_sample_count": 1000,
+  "required_suite_sha256": "4fb0f28e5210b435b6d5df795c881b7afd0071fbec0d5b85800e069d9ee5b02b",
+  "require_same_suite": true,
+  "required_model_max_length": 16384,
+  "require_byte_fallback": true,
+  "require_provenance": true,
+  "require_training_report": true,
+  "max_unk_token_rate": 0.0,
+  "max_byte_fallback_rate": 0.02,
+  "max_roundtrip_failures": 0,
+  "max_missing_special_tokens": 0,
+  "minimum_throughput_ratio": 0.7,
+  "fertility": {
+    "native_chinese": {
+      "minimum_relative_improvement": 0.02
+    },
+    "english": {
+      "maximum_relative_regression": 0.1
+    },
+    "code": {
+      "maximum_relative_regression": 0.1
+    },
+    "math": {
+      "maximum_relative_regression": 0.1
+    },
+    "tool_json": {
+      "maximum_relative_regression": 0.1
+    },
+    "unicode_robustness": {
+      "maximum_relative_regression": 0.1
+    }
+  }
+}

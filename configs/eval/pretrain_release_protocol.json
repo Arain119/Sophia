@@ -1,0 +1,76 @@
+{
+  "schema": "sophia_pretrain_release_protocol_v1",
+  "status": "fixed",
+  "purpose": "Bind the formal seed-42 run to its model, token budget, data lineage, checkpoint, and evaluation artifacts.",
+  "policy": {
+    "path": "configs/eval/pretrain_base_checkpoint_policy.json",
+    "sha256": "50e2ac3eafd2b334894c944a8245f4ff6741135c3c07ca5bf8cd227f5ddc6e16"
+  },
+  "evaluation_assets": {
+    "full_generation_suite": {
+      "path": "configs/eval/generation_quality.jsonl",
+      "sha256": "1c7426c0f0945d8caf4b70bb56bc9b5f09ca726e0cbf5a7d52f884d2e277799c"
+    },
+    "generation_decontamination_signatures": {
+      "path": "configs/eval/generation_quality_decontamination.jsonl",
+      "sha256": "0f8cc779d81c6c2f3c58e495184a88ed6ca8c2c85cce275c644c56d59f703397"
+    },
+    "chinese_multiple_choice": {
+      "path": "dataset/benchmarks/chinese_multiple_choice.jsonl",
+      "sha256": "c99968173b45b3945506c9ece698d8a26a37f843f9a93549607a51ec0e051ddb",
+      "selection": {
+        "splits": ["dev", "val"],
+        "seed": 20260717,
+        "max_cases_per_benchmark": null
+      }
+    },
+    "full_benchmark_decontamination": {
+      "path": "dataset/benchmarks/benchmark_prompt_signatures.jsonl",
+      "sha256": "7c796744207d7b2ba62b20467d189131360cabd02b01728e65e9c1e02dcd8714"
+    }
+  },
+  "model": {
+    "parameter_count": 1012630480,
+    "max_seq_len": 4096,
+    "spec_sha256": "c605697ccdcd92b11095e04fe5a3cbad30d6388ec450568996c45db1afa4ba6a"
+  },
+  "training": {
+    "seed": 42,
+    "target_tokens": 20000000000,
+    "tokens_per_update": 1310720,
+    "release_steps": 15259,
+    "consumed_tokens": 20000276480,
+    "overshoot_tokens": 276480
+  },
+  "lineage": {
+    "required_hashes": [
+      "tokenizer_sha1",
+      "train_manifest_sha1",
+      "val_manifest_sha1",
+      "test_manifest_sha1",
+      "machine_recipe_sha256",
+      "data_admission_sha256"
+    ],
+    "hash_algorithms": {
+      "*_sha1": "40 lowercase hexadecimal characters",
+      "*_sha256": "64 lowercase hexadecimal characters"
+    }
+  },
+  "stability_contract": {
+    "kind": "pretrain_stability_probe",
+    "status": "pass",
+    "passed": true,
+    "completed": true,
+    "minimum_last_step": 154
+  },
+  "reports": {
+    "required": ["generation", "executable", "chinese_multiple_choice", "perplexity", "stability"],
+    "binding_fields": ["protocol_sha256", "checkpoint_sha256"],
+    "missing_values": "fail"
+  },
+  "semantics": {
+    "checkpoint": "The formal seed-42 checkpoint must satisfy every model, training, lineage, protocol, checkpoint, and report binding before release.",
+    "missing_or_nonfinite_metric": "fail",
+    "protocol_self_hash": "The protocol cannot contain its own hash; the checkpoint evidence binds its path and sha256."
+  }
+}

@@ -1,0 +1,40 @@
+{"id": "cs_000", "category": "commonsense", "messages": [{"role": "user", "content": "为什么天空是蓝色的？"}]}
+{"id": "cs_001", "category": "commonsense", "messages": [{"role": "user", "content": "红绿灯为什么是红黄绿三种颜色，不是别的颜色？"}]}
+{"id": "cs_002", "category": "commonsense", "messages": [{"role": "user", "content": "为什么冬天呼气会有白雾，夏天没有？"}]}
+{"id": "cs_003", "category": "commonsense", "messages": [{"role": "user", "content": "为什么下雨前天会变得很闷？"}]}
+{"id": "cs_004", "category": "commonsense", "messages": [{"role": "user", "content": "为什么铁放久了会生锈，金子不会？"}]}
+{"id": "cs_005", "category": "commonsense", "messages": [{"role": "user", "content": "为什么热水比冷水更容易把油碗洗干净？"}]}
+{"id": "cs_006", "category": "commonsense", "messages": [{"role": "user", "content": "为什么飞机能飞起来，那么重的东西？"}]}
+{"id": "cs_007", "category": "commonsense", "messages": [{"role": "user", "content": "为什么切洋葱会流眼泪？"}]}
+{"id": "cs_008", "category": "commonsense", "messages": [{"role": "user", "content": "为什么冰箱冷冻室的门比冷藏室难拉开？"}]}
+{"id": "cs_009", "category": "commonsense", "messages": [{"role": "user", "content": "为什么下水道的管子要弯一下，不直接通下去？"}]}
+{"id": "cs_010", "category": "commonsense", "messages": [{"role": "user", "content": "为什么白天看不见星星？"}]}
+{"id": "cs_011", "category": "commonsense", "messages": [{"role": "user", "content": "为什么高铁的窗户不能开？"}]}
+{"id": "cs_012", "category": "commonsense", "messages": [{"role": "user", "content": "为什么面包放两天会变硬，饼干反而会变软？"}]}
+{"id": "cs_013", "category": "commonsense", "messages": [{"role": "user", "content": "为什么救护车开过来和开过去，声音听起来不一样？"}]}
+{"id": "cs_014", "category": "commonsense", "messages": [{"role": "user", "content": "为什么山上比平地冷，山不是离太阳更近吗？"}]}
+{"id": "cs_015", "category": "commonsense", "messages": [{"role": "user", "content": "为什么手机电池用了两年就不经用了？"}]}
+{"id": "cs_016", "category": "commonsense", "messages": [{"role": "user", "content": "为什么锅里的水快开的时候声音反而变小了？"}]}
+{"id": "cs_017", "category": "commonsense", "messages": [{"role": "user", "content": "为什么镜子里的字是反的，上下却不颠倒？"}]}
+{"id": "cs_018", "category": "commonsense", "messages": [{"role": "user", "content": "为什么晾在阴天的衣服比晴天难干？"}]}
+{"id": "cs_019", "category": "commonsense", "messages": [{"role": "user", "content": "为什么打雷总是先看到闪电后听到声音？"}]}
+{"id": "cs_020", "category": "commonsense", "messages": [{"role": "user", "content": "为什么猫从高处掉下来能站稳？"}]}
+{"id": "cs_021", "category": "commonsense", "messages": [{"role": "user", "content": "为什么伤口结痂了会痒？"}]}
+{"id": "cs_022", "category": "commonsense", "messages": [{"role": "user", "content": "为什么剧院和电影院的墙做成凹凸不平的？"}]}
+{"id": "cs_023", "category": "commonsense", "messages": [{"role": "user", "content": "为什么盐撒在结冰的路上冰就化了？"}]}
+{"id": "cs_024", "category": "commonsense", "messages": [{"role": "user", "content": "为什么用吸管能把水吸上来？"}]}
+{"id": "cs_025", "category": "commonsense", "messages": [{"role": "user", "content": "为什么树叶秋天会变黄？"}]}
+{"id": "cs_026", "category": "commonsense", "messages": [{"role": "user", "content": "为什么两个人隔着门说话听得见，隔着墙就听不清？"}]}
+{"id": "cs_027", "category": "commonsense", "messages": [{"role": "user", "content": "为什么自行车骑起来不倒，停下就倒？"}]}
+{"id": "cs_028", "category": "commonsense", "messages": [{"role": "user", "content": "为什么感冒的时候吃东西没味道？"}]}
+{"id": "cs_029", "category": "commonsense", "messages": [{"role": "user", "content": "为什么大楼越高，顶上晃得越厉害反而是正常的？"}]}
+{"id": "csf_000", "category": "commonsense_followup", "messages": [{"role": "user", "content": "为什么天空是蓝色的？"}, {"role": "assistant", "content": "太阳光里各种颜色都有，蓝紫光波长短，被空气里的分子散射得最厉害，朝四面八方散开，所以你抬头看到的整片天是蓝的。"}, {"role": "user", "content": "那按你这么说，晚霞为什么是红的？"}]}
+{"id": "csf_001", "category": "commonsense_followup", "messages": [{"role": "user", "content": "红绿灯为什么是红黄绿三种颜色？"}, {"role": "assistant", "content": "红色波长最长，穿透雾和雨的能力最强，最远就能看见，所以拿来当停。绿色和红色在色觉上分得最开，黄色夹在中间做过渡。"}, {"role": "user", "content": "那为什么不能只用两种，红和绿就够了吧？"}]}
+{"id": "csf_002", "category": "commonsense_followup", "messages": [{"role": "user", "content": "为什么冬天呼气会有白雾？"}, {"role": "assistant", "content": "你呼出的气又湿又热，一出来遇到冷空气，水汽来不及保持气态就凝成了小水滴，那团白的其实是极小的水珠。"}, {"role": "user", "content": "可我洗澡的时候浴室也是白的，那是一回事吗？"}]}
+{"id": "csf_003", "category": "commonsense_followup", "messages": [{"role": "user", "content": "为什么铁会生锈？"}, {"role": "assistant", "content": "铁碰到水和氧气会慢慢变成氧化铁，也就是锈。锈是松的，会往里掉渣，露出新的铁接着锈。"}, {"role": "user", "content": "那不锈钢也是铁做的，它为什么不锈？"}]}
+{"id": "csf_004", "category": "commonsense_followup", "messages": [{"role": "user", "content": "为什么打雷先看到闪电后听到雷声？"}, {"role": "assistant", "content": "光一秒钟走三十万公里，声音一秒钟才走三百多米，同一个地方发生的事，光先到你眼睛，声音后到你耳朵。"}, {"role": "user", "content": "那我怎么估算雷离我多远？"}]}
+{"id": "csf_005", "category": "commonsense_followup", "messages": [{"role": "user", "content": "为什么切洋葱会流眼泪？"}, {"role": "assistant", "content": "洋葱切开时细胞破了，里面的含硫物质跑出来变成一种挥发的气体，飘到眼睛上刺激角膜，眼睛就分泌眼泪去冲它。"}, {"role": "user", "content": "有人说泡水里切就不流泪，这是什么道理？"}]}
+{"id": "csf_006", "category": "commonsense_followup", "messages": [{"role": "user", "content": "为什么飞机能飞起来？"}, {"role": "assistant", "content": "机翼上表面鼓、下表面平，气流走上面要快一些，压强就低，上下的压强差把机翼往上托。速度够快，这个托力就超过了飞机的重量。"}, {"role": "user", "content": "那飞机在天上发动机全停了，会直接掉下来吗？"}]}
+{"id": "csf_007", "category": "commonsense_followup", "messages": [{"role": "user", "content": "为什么白天看不见星星？"}, {"role": "assistant", "content": "星星白天一直在那儿，只是太阳把整片天照亮了，天空本身的亮度盖过了星光，对比之下就看不出来。"}, {"role": "user", "content": "那白天用望远镜能看到吗？"}]}
+{"id": "csf_008", "category": "commonsense_followup", "messages": [{"role": "user", "content": "为什么盐能化冰？"}, {"role": "assistant", "content": "盐溶进冰面上那层薄薄的水里，让水要更低的温度才结得成冰，于是冰在原来的温度下就化了。"}, {"role": "user", "content": "那撒糖行不行？"}]}
+{"id": "csf_009", "category": "commonsense_followup", "messages": [{"role": "user", "content": "为什么自行车骑起来不倒？"}, {"role": "assistant", "content": "轮子转起来会有一股保持自己转轴方向的劲，车一往一边倒，你会不自觉地把龙头往那边打一点，车就自己扶正了。"}, {"role": "user", "content": "那为什么骑得越快越稳？"}]}

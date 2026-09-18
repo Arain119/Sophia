@@ -1,0 +1,40 @@
+{
+  "schema": "sophia_tokenizer_quality_suite_v1",
+  "domains": {
+    "native_chinese": [
+      "杭州西湖的水面映着晚霞，游客沿着苏堤慢慢散步。",
+      "研究人员需要区分相关性与因果关系，并说明实验中的潜在偏差。",
+      "请把下面这段会议记录整理成三条结论，并保留关键数字与日期。",
+      "在分布式系统中，网络分区、时钟漂移和重复请求都可能影响一致性。"
+    ],
+    "english": [
+      "A reliable experiment records its assumptions, inputs, measurements, and failure criteria.",
+      "The compiler rejected the program because the borrowed value did not live long enough.",
+      "Please compare the two proposals and cite the evidence that supports your conclusion.",
+      "Long-context evaluation should test retrieval, synthesis, and state tracking separately."
+    ],
+    "code": [
+      "def merge_counts(left: dict[str, int], right: dict[str, int]) -> dict[str, int]:\n    result = left.copy()\n    for key, value in right.items():\n        result[key] = result.get(key, 0) + value\n    return result\n",
+      "SELECT user_id, COUNT(*) AS events FROM audit_log WHERE created_at >= '2026-01-01' GROUP BY user_id;",
+      "const response = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) });",
+      "fn checked_ratio(numerator: u64, denominator: u64) -> Option<f64> { (denominator != 0).then(|| numerator as f64 / denominator as f64) }"
+    ],
+    "math": [
+      "若 f(x)=x^3-2x+1，则 f'(x)=3x^2-2，并求方程 f'(x)=0 的实数解。",
+      "For a matrix A in R^{m x n}, show that rank(A^T A) = rank(A).",
+      "\\int_0^1 x^2 e^{-x} \\, dx = 2 - \\frac{5}{e}",
+      "P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k},\\quad k=0,1,\\ldots,n."
+    ],
+    "tool_json": [
+      "{\"name\":\"web_search\",\"arguments\":{\"query\":\"2026 年上海人工智能政策\",\"max_results\":5}}",
+      "{\"name\":\"python_exec\",\"arguments\":{\"code\":\"print(sum(i*i for i in range(10)))\",\"timeout_s\":30}}",
+      "{\"name\":\"read_file\",\"arguments\":{\"path\":\"/workspace/reports/summary.json\",\"encoding\":\"utf-8\"}}",
+      "{\"ok\":true,\"result\":{\"rows\":[{\"id\":17,\"status\":\"ready\"}]},\"error\":null}"
+    ],
+    "unicode_robustness": [
+      "emoji🙂，全角ＡＢＣ，日文かなカナ，accent café naïve，数学符号∑∫√∞。",
+      "路径 C:\\\\Users\\\\研究员\\\\notes.txt 与 /home/user/资料/notes.txt 应可往返。",
+      "零宽字符测试：a\u200bb；组合字符：é；换行：first line\r\nsecond line。"
+    ]
+  }
+}

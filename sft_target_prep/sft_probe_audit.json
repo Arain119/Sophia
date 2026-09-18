@@ -1,0 +1,36 @@
+{
+  "schema": "sophia_sft_probe_audit_v1",
+  "status": "passed",
+  "created_at": "2026-09-02T06:27:46.714024+00:00",
+  "machine_recipe_sha256": "c05ebea5d96f6d2514142ce8055598c4c17ad2c7aeb15ba492b2cd89348d8cc3",
+  "implementation_sha256": "f0bc39314892d1dc61e16ea1e3f510ea94b872624af9de0786df7c2646c8a9e0",
+  "machine_signature": {
+    "schema": "sft_machine_adaptive_v1",
+    "device_type": "cuda",
+    "torch": "2.8.0+cu128",
+    "cuda": "12.8",
+    "platform": "linux",
+    "machine": "x86_64",
+    "cuda_device_name": "NVIDIA GeForce RTX 5090",
+    "cuda_capability": [
+      12,
+      0
+    ],
+    "cuda_total_memory_gb": 31.358337
+  },
+  "selected": {
+    "batch_size": 4,
+    "accumulation_steps": 8,
+    "gradient_checkpointing": true
+  },
+  "initial_checkpoint": {
+    "sha256": "b28f40bf81ffb59e26a9369ee4da1827e13dc3ca72988dc5f89e20ca4510091f",
+    "step": 3
+  },
+  "resumed_checkpoint": {
+    "sha256": "2a5bb017bda2cd0c3a39c0b2a40da87734c4b4c32918160506807efe71e156a4",
+    "step": 4
+  },
+  "resumed_update_seconds": 10.360306723043323,
+  "metrics_sha256": "90000ea73e81eb1c11d80a069a7cc2e05cef30c6f1551e1f8070e911304618ed"
+}

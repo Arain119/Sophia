@@ -1,0 +1,57 @@
+{%- macro render_response_format(schema) -%}
+{{- '## Response Format:\n\nYou MUST strictly adhere to the following schema to reply:\n' + (schema | tojson) -}}
+{%- endmacro -%}
+{%- set bos = '<｜begin▁of▁sentence｜>' -%}
+{%- set eos = '<｜end▁of▁sentence｜>' -%}
+{%- set user = '<｜User｜>' -%}
+{%- set assistant = '<｜Assistant｜>' -%}
+{%- set latest_reminder = '<｜latest_reminder｜>' -%}
+{{- bos -}}
+{%- for message in messages -%}
+    {%- set role = message.role -%}
+    {%- set prev_role = messages[loop.index0 - 1].role if loop.index0 > 0 else none -%}
+    {%- set next_role = messages[loop.index0 + 1].role if not loop.last else none -%}
+    {%- set need_transition = loop.last or next_role == 'assistant' or next_role == 'latest_reminder' -%}
+    {%- if role == 'system' or role == 'developer' -%}
+        {%- if role == 'developer' -%}{{- user -}}{%- endif -%}
+        {{- message.content or '' -}}
+        {%- if message.response_format is defined and message.response_format -%}
+{{ '\n\n' }}{{- render_response_format(message.response_format) -}}
+        {%- endif -%}
+    {%- elif role == 'user' -%}
+        {%- set continuation_user = prev_role == 'user' -%}
+        {%- if continuation_user -%}
+            {{- '\n\n' -}}
+        {%- else -%}
+            {{- user -}}
+        {%- endif -%}
+        {%- if message.content_blocks is defined and message.content_blocks is iterable and message.content_blocks is not string and message.content_blocks|length > 0 -%}
+            {%- for block in message.content_blocks -%}
+                {%- if not loop.first -%}{{- '\n\n' -}}{%- endif -%}
+                {%- if block.type == 'text' -%}
+                    {{- block.text or '' -}}
+                {%- else -%}
+                    {{- '[Unsupported ' ~ (block.type or 'unknown') ~ ']' -}}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- else -%}
+            {{- message.content or '' -}}
+        {%- endif -%}
+    {%- elif role == 'latest_reminder' -%}
+        {{- latest_reminder + (message.content or '') -}}
+    {%- elif role == 'assistant' -%}
+{% generation %}
+        {{- message.content or '' -}}
+        {%- if not (message.wo_eos is defined and message.wo_eos) -%}
+            {{- eos -}}
+        {%- endif -%}
+{% endgeneration %}
+    {%- endif -%}
+    {%- if need_transition -%}
+        {%- if role == 'user' or role == 'developer' -%}
+            {%- if not (loop.last and not add_generation_prompt) -%}
+                {{- assistant -}}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endfor -%}

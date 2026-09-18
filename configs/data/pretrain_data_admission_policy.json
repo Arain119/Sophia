@@ -1,0 +1,150 @@
+{
+  "allow_legacy_assets_as": [
+    "evaluation_baseline",
+    "pipeline_regression_fixture",
+    "historical_evidence"
+  ],
+  "allow_legacy_assets_as_training_input": false,
+  "benchmark_decontamination": {
+    "required": true,
+    "required_signature_assets": [
+      {
+        "path": "dataset\\benchmarks/benchmark_prompt_signatures.jsonl",
+        "scope": "gsm8k_math_mmlu_arc_hellaswag_humaneval_ceval_cmmlu_all_acquired_splits",
+        "sha256": "7c796744207d7b2ba62b20467d189131360cabd02b01728e65e9c1e02dcd8714",
+        "signatures": 127292
+      },
+      {
+        "path": "configs/eval/generation_quality_decontamination.jsonl",
+        "scope": "pinned_bilingual_raw_and_chat_generation_prompts",
+        "sha256": "0f8cc779d81c6c2f3c58e495184a88ed6ca8c2c85cce275c644c56d59f703397",
+        "signatures": 4000
+      }
+    ]
+  },
+  "chinese_quality_proxy": {
+    "applicable_source_names": [
+      "opencsg_fineweb_edu_zh_4_5_full_v6",
+      "skypile_diverse_chinese_web_v1",
+      "zhihu_kol_modern_chinese_qa_v1"
+    ],
+    "application_rule": "explicit_web_or_ugc_source_allowlist_with_cjk_ratio_at_or_above_threshold_except_hash_pinned_curated_source_exemptions",
+    "curated_source_exemptions": [
+      {
+        "evidence_report_path": "dataset/source_audit/wikisource_proxy_exemption_v1.json",
+        "evidence_report_sha256": "11d8b7475908d22def2b3f8b86f75d700a43b32e65d7289775414535116303a4",
+        "reason": "The CCI3 educational-web proxy is demonstrably out of domain for this uniformly licensed curated archive and would preferentially retain laws and political prose while deleting literature and classical primary texts.",
+        "repo_id": "wikimedia/wikisource",
+        "revision": "f31a033f5f3d2107b3e864e578710df104a00baa"
+      }
+    ],
+    "minimum_cjk_ratio": 0.25,
+    "minimum_score": 0.68,
+    "report_path": "dataset/source_audit/cci3_quality_proxy_v2/report.json",
+    "report_sha256": "1b63f1b2dff5eef9bcc6bca2448c4c5e56091cf32d71a7c13379eda159e4bdcb",
+    "required": true
+  },
+  "finemath_quality_exclusion": {
+    "finemath_3plus_minimum_score": 2.75,
+    "manifest_entries": 218647,
+    "manifest_path": "configs/data/artifacts/finemath_quality_exclusions_v1.tsv",
+    "manifest_sha256": "fe711689ebb6285ece87043312c452fb105a8543fab55fb4df6632ed939731fe",
+    "report_path": "dataset/source_audit/finemath_quality_exclusion_v1/report.json",
+    "report_sha256": "902c1fef0932cd84d350f1945e980c07279a814c467e524089cacd552e92d3ca",
+    "required": true,
+    "sources": [
+      "finemath_3plus_v1",
+      "finemath_4plus_v1"
+    ],
+    "template_rules": [
+      "finemath_academic_mill",
+      "finemath_date_calculator",
+      "finemath_number_properties",
+      "finemath_subscription_preview",
+      "finemath_broken_qa"
+    ]
+  },
+  "forbidden_input_roots": [
+    "dataset/pretrain",
+    "dataset/pretrain_tokens",
+    "dataset/pretrain_decay",
+    "H:/Sophia/dataset/archive/legacy_datasets"
+  ],
+  "forbidden_upstream_reason": "The audited official Skywork/SkyPile-150B snapshot is admitted for this project's noncommercial research use. Its third-party mirrors remain excluded. PleIAs Common Corpus, structured Wikipedia, Wikidata title-description, ChineseWebText2.0, WikiTeam, and the audited IndustryCorpus repositories retain their prior quality, access, or per-document-rights rejection.",
+  "forbidden_upstream_repo_ids": [
+    "PleIAs/common_corpus",
+    "wikimedia/structured-wikipedia",
+    "wikimedia/wikidata-title-desc",
+    "common-pile/wikiteam_filtered",
+    "BAAI/IndustryCorpus_education",
+    "BAAI/IndustryCorpus2_finance_economics",
+    "CASIA-LM/ChineseWebText2.0",
+    "Morton-Li/ChineseWebText2.0-HighQuality",
+    "tiendung/SkyPile-150B_lzma",
+    "answer722qzd/SkyPile-150B",
+    "hfxunlp/SkyPile-150B"
+  ],
+  "legacy_content_exclusion": {
+    "action": "report",
+    "candidate_manifest_sha256": "e3a304459cf97441e02098b7fcf9f6d3060fc427656a237e6acddb7373fcfa0b",
+    "database_sha256": "eeaa5600286b32d02414d1e23168f3e71adbc3acbb55078d5d64837a79b94fb9",
+    "match_mode": "exact_sha256_of_nfkc_casefold_remove_whitespace",
+    "near_similarity_threshold": 0.75,
+    "report_path": "dataset/legacy_content_exclusion/report.json",
+    "report_sha256": "55de02eacd15c5d7e390915a9a9c9609dfdfdd85ca39ed9eebfd11fac754dca2",
+    "required": true,
+    "required_corpus_roots": [
+      "dataset/pretrain/train",
+      "H:/Sophia/dataset/archive/legacy_datasets"
+    ]
+  },
+  "post_clean_document_admission": {
+    "document_exclusion_manifest": {
+      "entries": 218647,
+      "path": "artifacts/finemath_quality_exclusions_v1.tsv",
+      "sha256": "fe711689ebb6285ece87043312c452fb105a8543fab55fb4df6632ed939731fe",
+      "sources": [
+        "finemath_3plus_v1",
+        "finemath_4plus_v1"
+      ]
+    },
+    "exclude_legacy_exact_overlap": true,
+    "exclude_legacy_near_overlap": false,
+    "repeated_sentence_rules": {
+      "common_pile_doab_filtered_v2": {
+        "min_sentence_chars": 20,
+        "minimum_repeated_chars": 240,
+        "minimum_repeated_fraction": 0.2,
+        "repeats": 2
+      },
+      "finemath_3plus_v1": {
+        "min_sentence_chars": 20,
+        "minimum_repeated_chars": 240,
+        "minimum_repeated_fraction": 0.2,
+        "repeats": 2
+      },
+      "finemath_4plus_v1": {
+        "min_sentence_chars": 20,
+        "minimum_repeated_chars": 240,
+        "minimum_repeated_fraction": 0.2,
+        "repeats": 2
+      }
+    }
+  },
+  "purpose": "Admit the audited pretraining corpus with hash-pinned FineMath continuous-score and semantic-template exclusions",
+  "required_lineage": [
+    "versioned_source_inventory_with_pinned_revision_and_license_review",
+    "legacy_upstream_overlap_measurement_and_explicit_readmission",
+    "legacy_corpus_exact_and_near_overlap_report",
+    "hash_pinned_chinese_quality_proxy_with_held_out_pass_report",
+    "hash_pinned_curated_source_proxy_exemption_evidence_when_used",
+    "fresh_acquisition_report_with_per_file_sha256",
+    "fresh_cleaning_report_with_document_hash_split_and_dedup_evidence",
+    "benchmark_decontamination_report",
+    "tokenization_report_bound_to_selected_tokenizer_bundle_sha1",
+    "source_revision_license_language_domain_and_length_bucket_token_totals",
+    "hash_pinned_finemath_continuous_score_and_semantic_template_exclusion"
+  ],
+  "required_tokenizer_bundle_sha1": "abfcdb43c161a541e08ffb2cbc3794cd2fdc189f",
+  "schema": "sophia_pretrain_data_admission_policy_v1"
+}

@@ -1,0 +1,128 @@
+from __future__ import annotations
+
+import argparse
+import os
+
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
+
+from ml.cli.support import run_cli
+from ml.tasks.pretrain.pipeline import build_pretrain_args, run, run_preflight
+from ml.training.pretrain.data_admission import validate_pretrain_dataset_manifest
+from ml.training.pretrain.profiles import RELEASE_PROFILE
+from ml.tooling.scripts.audit_selected_muon_probe import (
+    validate_selected_muon_probe_audit,
+)
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Sophia Pretraining (single stack)")
+    parser.add_argument(
+        "--data_path",
+        type=str,
+        required=True,
+        help="Dataset root or train split path (must contain sibling val/manifest.json and test/manifest.json).",
+    )
+    parser.add_argument(
+        "--tokenizer_path",
+        type=str,
+        default="",
+        help=(
+            "Tokenizer directory (expects tokenizer.json). "
+            "Default: ml/modeling/text (bundled tokenizer bundle)."
+        ),
+    )
+    parser.add_argument(
+        "--output_dir",
+        type=str,
+        default="",
+        help="Run output directory. Empty = auto-derived Sophia default.",
+    )
+    parser.add_argument(
+        "--resume_from_checkpoint",
+        type=str,
+        default="",
+        help="Checkpoint path, checkpoint directory, or one of: auto/latest.",
+    )
+    parser.add_argument(
+        "--overwrite_output_dir",
+        type=int,
+        default=0,
+        choices=[0, 1],
+        help="Delete a recognized Sophia run directory before starting a fresh run.",
+    )
+    parser.add_argument(
+        "--machine_recipe_json",
+        type=str,
+        required=True,
+        help=(
+            "Signed RTX 5090 BF16 machine recipe measured on the target GPU."
+        ),
+    )
+    parser.add_argument(
+        "--machine_recipe_migration_from_sha256",
+        type=str,
+        default="",
+        help=(
+            "Explicit source machine-recipe SHA-256 for a validated resume migration."
+        ),
+    )
+    parser.add_argument(
+        "--allow_protocol_path_relocation",
+        type=int,
+        default=0,
+        choices=[0, 1],
+        help="Allow a release resume to use the canonical protocol at a relocated path.",
+    )
+    parser.add_argument(
+        "--muon_probe_audit_json",
+        type=str,
+        default="",
+        help=(
+            "Ready selected-Muon graph-recapture, warmup, and checkpoint-resume audit. "
+            "Required for formal random-initialization pretraining."
+        ),
+    )
+    parser.add_argument(
+        "--preflight",
+        type=int,
+        default=0,
+        choices=[0, 1],
+        help=(
+            "Validate the CUDA runtime, production dataset, signed machine recipe, "
+            "machine signature, and model load without building an optimizer or training."
+        ),
+    )
+    return parser
+
+
+def main() -> None:
+    parsed = build_parser().parse_args()
+    validate_selected_muon_probe_audit(
+        audit_path=str(parsed.muon_probe_audit_json),
+        recipe_path=str(parsed.machine_recipe_json),
+    )
+    validate_pretrain_dataset_manifest(
+        data_path=str(parsed.data_path),
+        tokenizer_path=str(parsed.tokenizer_path),
+    )
+    args = build_pretrain_args(
+        data_path=str(parsed.data_path),
+        tokenizer_path=str(parsed.tokenizer_path),
+        output_dir=str(parsed.output_dir),
+        resume_from_checkpoint=str(parsed.resume_from_checkpoint),
+        overwrite_output_dir=int(parsed.overwrite_output_dir),
+        machine_recipe_json=str(parsed.machine_recipe_json),
+        machine_recipe_migration_from_sha256=(
+            str(parsed.machine_recipe_migration_from_sha256)
+        ),
+        allow_protocol_path_relocation=int(parsed.allow_protocol_path_relocation),
+        profile=RELEASE_PROFILE,
+    )
+    if int(parsed.preflight) == 1:
+        run_preflight(args)
+        return
+    run(args)
+
+
+if __name__ == "__main__":
+    raise SystemExit(run_cli(main))

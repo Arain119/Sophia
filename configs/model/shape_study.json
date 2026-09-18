@@ -1,0 +1,20 @@
+{
+  "schema": "sophia_hybrid_shape_study_v1",
+  "status": "selected",
+  "target_parameter_count": 1000000000,
+  "selected": {
+    "model_config": "configs/model/sophia.json",
+    "unique_parameters": 1012630480,
+    "target_delta": 12630480,
+    "target_relative_error": 0.01263048,
+    "count_method": "meta_device_runtime_instantiation_unique_parameters",
+    "layer_counts": {
+      "kda": 21,
+      "mla": 7
+    },
+    "per_layer_parameters": {
+      "kda": 34532496,
+      "mla": 26682880
+    }
+  }
+}

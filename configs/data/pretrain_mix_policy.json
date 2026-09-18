@@ -1,0 +1,157 @@
+{
+  "schema": "sophia_pretrain_mix_policy_v1",
+  "status": "draft_pending_v7_token_profile",
+  "requested_unique_train_tokens": 20000000000,
+  "constraints": {
+    "no_document_repetition": true,
+    "global_exact_and_near_deduplication": true,
+    "benchmark_decontamination": true,
+    "resolved_quota_must_equal_requested_tokens": false
+  },
+  "target_fractions": {
+    "opencsg_fineweb_edu_zh_4_5_full_v6": 0.335,
+    "skypile_diverse_chinese_web_v1": 0.1,
+    "wikimedia_chinese_combined": 0.07,
+    "opencsg_fineweb_edu_zh_3_4_humanities_v1": 0.03,
+    "zhihu_kol_modern_chinese_qa_v1": 0.03,
+    "fineweb_edu_english_dedup": 0.09,
+    "open_books_and_textbooks_combined": 0.09,
+    "common_pile_arxiv_papers_filtered_v2": 0.035,
+    "wikimedia_enwiki_20260701_v1": 0.03,
+    "common_pile_pubmed_filtered_v2": 0.015,
+    "finemath_combined": 0.075,
+    "permissive_code_combined": 0.1
+  },
+  "target_fraction_sum": 1.0,
+  "target_source_groups": {
+    "opencsg_fineweb_edu_zh_4_5_full_v6": {
+      "members": ["opencsg_fineweb_edu_zh_4_5_full_v6"],
+      "allocation": "proportional_to_supply"
+    },
+    "skypile_diverse_chinese_web_v1": {
+      "members": ["skypile_diverse_chinese_web_v1"],
+      "allocation": "proportional_to_supply",
+      "shortfall_reallocation_target": "opencsg_fineweb_edu_zh_4_5_full_v6"
+    },
+    "wikimedia_chinese_combined": {
+      "members": [
+        "wikimedia_wikisource_zh_20231201_v2",
+        "wikimedia_zhwiki_20260701_v1",
+        "wikimedia_zhwikibooks_20260701_v1",
+        "wikimedia_zhwikinews_20260701_v1",
+        "wikimedia_zhwikiquote_20260701_v1",
+        "wikimedia_zhwikiversity_20260701_v1"
+      ],
+      "allocation": "proportional_to_supply",
+      "shortfall_reallocation_target": "opencsg_fineweb_edu_zh_4_5_full_v6"
+    },
+    "opencsg_fineweb_edu_zh_3_4_humanities_v1": {
+      "members": ["opencsg_fineweb_edu_zh_3_4_humanities_v1"],
+      "allocation": "proportional_to_supply",
+      "shortfall_reallocation_target": "wikimedia_chinese_combined"
+    },
+    "zhihu_kol_modern_chinese_qa_v1": {
+      "members": ["zhihu_kol_modern_chinese_qa_v1"],
+      "allocation": "proportional_to_supply",
+      "shortfall_reallocation_target": "wikimedia_chinese_combined"
+    },
+    "fineweb_edu_english_dedup": {
+      "members": ["fineweb_edu_english_dedup_v1"],
+      "allocation": "proportional_to_supply"
+    },
+    "open_books_and_textbooks_combined": {
+      "members": [
+        "common_pile_doab_filtered_v2",
+        "common_pile_libretexts_filtered_v2",
+        "common_pile_pre_1929_books_filtered_v2",
+        "common_pile_pressbooks_filtered_v2"
+      ],
+      "allocation": "proportional_to_supply",
+      "shortfall_reallocation_target": "fineweb_edu_english_dedup"
+    },
+    "common_pile_arxiv_papers_filtered_v2": {
+      "members": ["common_pile_arxiv_papers_filtered_v2"],
+      "allocation": "proportional_to_supply"
+    },
+    "wikimedia_enwiki_20260701_v1": {
+      "members": ["wikimedia_enwiki_20260701_v1"],
+      "allocation": "proportional_to_supply",
+      "shortfall_reallocation_target": "fineweb_edu_english_dedup"
+    },
+    "common_pile_pubmed_filtered_v2": {
+      "members": ["common_pile_pubmed_filtered_v2"],
+      "allocation": "proportional_to_supply"
+    },
+    "finemath_combined": {
+      "members": ["finemath_4plus_v1", "finemath_3plus_v1"],
+      "allocation": "priority_fill"
+    },
+    "permissive_code_combined": {
+      "members": [
+        "common_pile_stackv2_edu_filtered_v2",
+        "the_stack_smol_xl_permissive_v1",
+        "github_code_clean_permissive_v1"
+      ],
+      "allocation": "priority_fill",
+      "shortfall_reallocation_target": "fineweb_edu_english_dedup"
+    }
+  },
+  "formal_constraints": {
+    "maximum_document_repetitions": 1,
+    "chinese_token_fraction": 0.565,
+    "math_min_fraction": 0.07,
+    "code_min_fraction": 0.069,
+    "long_form_source_min_fraction": 0.18,
+    "require_independent_modern_chinese_backbone": true,
+    "modern_chinese_min_fraction": 0.45,
+    "source_max_fractions": {
+      "opencsg_fineweb_edu_zh_4_5_full_v6": 0.42
+    },
+    "source_groups": {
+      "chinese": [
+        "opencsg_fineweb_edu_zh_4_5_full_v6",
+        "skypile_diverse_chinese_web_v1",
+        "zhihu_kol_modern_chinese_qa_v1",
+        "opencsg_fineweb_edu_zh_3_4_humanities_v1",
+        "wikimedia_wikisource_zh_20231201_v2",
+        "wikimedia_zhwiki_20260701_v1",
+        "wikimedia_zhwikibooks_20260701_v1",
+        "wikimedia_zhwikinews_20260701_v1",
+        "wikimedia_zhwikiquote_20260701_v1",
+        "wikimedia_zhwikiversity_20260701_v1"
+      ],
+      "modern_chinese": [
+        "opencsg_fineweb_edu_zh_4_5_full_v6",
+        "skypile_diverse_chinese_web_v1",
+        "zhihu_kol_modern_chinese_qa_v1",
+        "wikimedia_zhwiki_20260701_v1"
+      ],
+      "math_stem": ["finemath_4plus_v1", "finemath_3plus_v1"],
+      "code": [
+        "common_pile_stackv2_edu_filtered_v2",
+        "the_stack_smol_xl_permissive_v1",
+        "github_code_clean_permissive_v1"
+      ],
+      "long_form": [
+        "wikimedia_wikisource_zh_20231201_v2",
+        "common_pile_doab_filtered_v2",
+        "common_pile_libretexts_filtered_v2",
+        "common_pile_pre_1929_books_filtered_v2",
+        "common_pile_pressbooks_filtered_v2",
+        "common_pile_arxiv_papers_filtered_v2",
+        "common_pile_pubmed_filtered_v2"
+      ]
+    }
+  },
+  "selection_notes": {
+    "why_v7_replaces_v6": "The v6 draft drew 81% of its Chinese tokens from one edu-filtered source, so the base corpus would have contained almost no colloquial or conversational Chinese. Measured register markers per 10k characters over 2000 sampled documents per source: fineweb-edu-zh 4_5 has 16.2 first/second-person pronouns, 0.7 exclamation marks and 17.5 colloquial-word hits; SkyPile scores 35.2 / 4.4 / 28.0 (head) and 38.1 / 5.8 / 33.1 (middle); Zhihu-KOL scores 105.7 / 15.8 / 67.3. SkyPile is roughly twice as conversational as the backbone and Zhihu roughly six times.",
+    "chinese": "56.5% overall. The source-group draft targets would place 59% of Chinese tokens in the 4_5 backbone, but measured SkyPile, humanities, and Zhihu supply is lower than target. The resolved r2.1 fallback consumes all 2.158B Chinese Wikimedia train tokens before returning residual shortfall to the backbone, leaving the 4_5 source at about 38.35% overall and 67.9% of Chinese tokens rather than 40.57% overall and 71.8% of Chinese tokens.",
+    "chinese_backbone_quality": "The 4_5 backbone is not uniformly clean: sampling turned up SEO marketing copy and OCR-masked text (for example 学*** where a character was stripped). Its edu score is a filter over web text, not a guarantee, which is a further argument against letting it carry 81% of Chinese.",
+    "code": "The source-group target remains 10%, but the final v7 r2.1 tokenizer measures exactly 1,398,538,001 unique train tokens, or 6.99269% of the 20B target. All unique permissive code is retained once, the formal minimum is 6.9%, and the remaining target shortfall is reallocated to FineWeb rather than repeating documents.",
+    "math": "finemath_4plus_v1 is consumed first and finemath_3plus_v1 backfills the remainder, so the higher-quality split is never displaced by the lower one. Both are the same repository and revision, so no new rights question is introduced.",
+    "biomedical_and_academic": "PubMed drops 3.5% -> 1.5% and arXiv 6.5% -> 3.5%. Specialised biomedical English and LaTeX-heavy papers are the least transferable tokens for a 1B Chinese-first chat model, and this is where the budget for colloquial Chinese and code comes from.",
+    "licensing": "zhihu_kol_modern_chinese_qa_v1 and skypile_diverse_chinese_web_v1 are admitted as noncommercial research use for this project only. This must appear in the model card: redistribution of the corpora and commercial use of the derived weights are not covered.",
+    "budget_rule": "Both shard provisioning and the formal pretraining run target 20B actually consumed unique train tokens. The 14-day window is a scheduling target, not permission to reduce token consumption; if measured RTX 5090 throughput is below 16,534 tokens/s, extend the rental. resolved_quota_must_equal_requested_tokens remains false only so the resolver can report an evidence-based supply shortfall instead of fabricating repeated data.",
+    "supply_rule": "These are targets, not claims. Every fraction is re-checked against the v7 token profile before the production policy is materialised."
+  }
+}

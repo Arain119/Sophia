@@ -1,0 +1,310 @@
+{
+  "schema": "sophia_tokenizer_provenance_v1",
+  "training_config": {
+    "vocab_size": 65536,
+    "min_frequency": 2,
+    "model_max_length": 16384,
+    "sampling_strategy": "stratified",
+    "bucket_budget_json": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g/tokenizer_bucket_budgets_512m.json",
+    "bucket_budget_json_sha256": "e6b94dd53c80a2d130e13b4fd66d989b6847b2dee6cc2828f87dd49b5aefacc1",
+    "resolved_bucket_budgets": {
+      "pretrain/common_pile_arxiv_papers_filtered_v2": 18790482,
+      "pretrain/common_pile_doab_filtered_v2": 34774968,
+      "pretrain/common_pile_libretexts_filtered_v2": 1648535,
+      "pretrain/common_pile_pre_1929_books_filtered_v2": 9365604,
+      "pretrain/common_pile_pressbooks_filtered_v2": 2529276,
+      "pretrain/common_pile_pubmed_filtered_v2": 8053064,
+      "pretrain/common_pile_stackv2_edu_filtered_v2": 7266192,
+      "pretrain/finemath_3plus_v1": 9987698,
+      "pretrain/finemath_4plus_v1": 30277621,
+      "pretrain/fineweb_edu_english_dedup_v1": 61063494,
+      "pretrain/github_code_clean_permissive_v1": 21424961,
+      "pretrain/opencsg_fineweb_edu_zh_3_4_humanities_v1": 7677506,
+      "pretrain/opencsg_fineweb_edu_zh_4_5_full_v6": 205868202,
+      "pretrain/skypile_diverse_chinese_web_v1": 29000419,
+      "pretrain/the_stack_smol_xl_permissive_v1": 12250828,
+      "pretrain/wikimedia_enwiki_20260701_v1": 16106127,
+      "pretrain/wikimedia_wikisource_zh_20231201_v2": 35557805,
+      "pretrain/wikimedia_zhwiki_20260701_v1": 21820986,
+      "pretrain/wikimedia_zhwikibooks_20260701_v1": 225087,
+      "pretrain/wikimedia_zhwikinews_20260701_v1": 110149,
+      "pretrain/wikimedia_zhwikiquote_20260701_v1": 75659,
+      "pretrain/wikimedia_zhwikiversity_20260701_v1": 140593,
+      "pretrain/zhihu_kol_modern_chinese_qa_v1": 2855656
+    },
+    "pretrain_max_texts": 0,
+    "pretrain_max_bytes": 536870912,
+    "max_text_chars": 8192,
+    "bucket_min_bytes": 0,
+    "pretrain_dir": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+    "additional_pretrain_dirs": [],
+    "pretrain_split": "train"
+  },
+  "training_input_stats": {
+    "pretrain_texts": 114189,
+    "pretrain_bytes": 536870904,
+    "total_texts": 114189,
+    "total_bytes": 536870904,
+    "truncated_texts": 30,
+    "buckets": {
+      "pretrain/common_pile_arxiv_papers_filtered_v2": {
+        "texts": 2294,
+        "bytes": 18790482
+      },
+      "pretrain/common_pile_doab_filtered_v2": {
+        "texts": 7455,
+        "bytes": 34774968
+      },
+      "pretrain/common_pile_libretexts_filtered_v2": {
+        "texts": 346,
+        "bytes": 1648535
+      },
+      "pretrain/common_pile_pre_1929_books_filtered_v2": {
+        "texts": 1146,
+        "bytes": 9365604
+      },
+      "pretrain/common_pile_pressbooks_filtered_v2": {
+        "texts": 784,
+        "bytes": 2529276
+      },
+      "pretrain/common_pile_pubmed_filtered_v2": {
+        "texts": 1038,
+        "bytes": 8053064
+      },
+      "pretrain/common_pile_stackv2_edu_filtered_v2": {
+        "texts": 2874,
+        "bytes": 7266192
+      },
+      "pretrain/finemath_3plus_v1": {
+        "texts": 2724,
+        "bytes": 9987698
+      },
+      "pretrain/finemath_4plus_v1": {
+        "texts": 8396,
+        "bytes": 30277621
+      },
+      "pretrain/fineweb_edu_english_dedup_v1": {
+        "texts": 17739,
+        "bytes": 61063494
+      },
+      "pretrain/github_code_clean_permissive_v1": {
+        "texts": 6886,
+        "bytes": 21424961
+      },
+      "pretrain/opencsg_fineweb_edu_zh_3_4_humanities_v1": {
+        "texts": 1568,
+        "bytes": 7677504
+      },
+      "pretrain/opencsg_fineweb_edu_zh_4_5_full_v6": {
+        "texts": 31548,
+        "bytes": 205868201
+      },
+      "pretrain/skypile_diverse_chinese_web_v1": {
+        "texts": 6329,
+        "bytes": 29000419
+      },
+      "pretrain/the_stack_smol_xl_permissive_v1": {
+        "texts": 4204,
+        "bytes": 12250828
+      },
+      "pretrain/wikimedia_enwiki_20260701_v1": {
+        "texts": 5303,
+        "bytes": 16106127
+      },
+      "pretrain/wikimedia_wikisource_zh_20231201_v2": {
+        "texts": 5242,
+        "bytes": 35557805
+      },
+      "pretrain/wikimedia_zhwiki_20260701_v1": {
+        "texts": 7737,
+        "bytes": 21820985
+      },
+      "pretrain/wikimedia_zhwikibooks_20260701_v1": {
+        "texts": 47,
+        "bytes": 225086
+      },
+      "pretrain/wikimedia_zhwikinews_20260701_v1": {
+        "texts": 66,
+        "bytes": 110149
+      },
+      "pretrain/wikimedia_zhwikiquote_20260701_v1": {
+        "texts": 6,
+        "bytes": 75659
+      },
+      "pretrain/wikimedia_zhwikiversity_20260701_v1": {
+        "texts": 41,
+        "bytes": 140592
+      },
+      "pretrain/zhihu_kol_modern_chinese_qa_v1": {
+        "texts": 416,
+        "bytes": 2855654
+      }
+    }
+  },
+  "input_files": {
+    "pretrain_train_files": [
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "common_pile_arxiv_papers_filtered_v2/train/part-00000.parquet",
+        "bytes": 14624743,
+        "sha256": "ad45e5f617db93b924abb70cbd1a43de6b83cd862866e65bce41f0ba1546274a"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "common_pile_doab_filtered_v2/train/part-00000.parquet",
+        "bytes": 23296777,
+        "sha256": "87d63f48a6e0ac00af58af48e77e0a8073a8f65970aaee559643ca123c810047"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "common_pile_libretexts_filtered_v2/train/part-00000.parquet",
+        "bytes": 1141068,
+        "sha256": "9686b4bca3f8d4ce5b55b8dae3f00142e8fccbfdbf778a21fc5603e6b968aca7"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "common_pile_pre_1929_books_filtered_v2/train/part-00000.parquet",
+        "bytes": 8108278,
+        "sha256": "9a290916329980cd1d430f2c214cd816cf90142895428b36fa316bc598cb03be"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "common_pile_pressbooks_filtered_v2/train/part-00000.parquet",
+        "bytes": 1823356,
+        "sha256": "b7db9d1aab9d5f98dbc831ee4ae21d835fff78aa4baa073dcc0df521ac4af40b"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "common_pile_pubmed_filtered_v2/train/part-00000.parquet",
+        "bytes": 5981112,
+        "sha256": "d657406467a71a6d0463b85b1be17825a86e52a74377f2c2a2b5c586aac63f2c"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "common_pile_stackv2_edu_filtered_v2/train/part-00000.parquet",
+        "bytes": 6020448,
+        "sha256": "a77b796485736ccada5ab879a0fcc2eaecd8f5ce3c57b8b4fa56357726ba71db"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "finemath_3plus_v1/train/part-00000.parquet",
+        "bytes": 8445715,
+        "sha256": "e1cf3a2bcbe03134c30606e80496ae06b857d7bf37c51669722ac6c6a8d834a0"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "finemath_4plus_v1/train/part-00000.parquet",
+        "bytes": 24648768,
+        "sha256": "ea9ca9802377b04f2f89dcfc1d70ea407bb40cae443cef24d5803e4858a49cd6"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "fineweb_edu_english_dedup_v1/train/part-00000.parquet",
+        "bytes": 52238667,
+        "sha256": "d6bbcd344913175672c878a6becaa12e644d9ac01aff4e5fcbfed075100ad329"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "github_code_clean_permissive_v1/train/part-00000.parquet",
+        "bytes": 13264005,
+        "sha256": "d7b9bce807a6e5bc81b1d3308052358b7affd4a398bbacdafbb516809146cf16"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "opencsg_fineweb_edu_zh_3_4_humanities_v1/train/part-00000.parquet",
+        "bytes": 9035950,
+        "sha256": "058aa7fe95d4b19d31de870058248557f56c2809ee2813e48ab6731c75e96e45"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "opencsg_fineweb_edu_zh_4_5_full_v6/train/part-00000.parquet",
+        "bytes": 216054455,
+        "sha256": "c1ce0115434252ba029bdf6fb1e4664cab5bfcbc98c46e13ebdf7633e415585b"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "skypile_diverse_chinese_web_v1/train/part-00000.parquet",
+        "bytes": 31719628,
+        "sha256": "b08a6e5af246a5e99d81a983eb335f3963b61b7886da26177832cbce3cb56ea3"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "the_stack_smol_xl_permissive_v1/train/part-00000.parquet",
+        "bytes": 7460583,
+        "sha256": "219176e038b4994076747183a40e1cda3c6c75c844738fbb3096c79616ae2dca"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "wikimedia_enwiki_20260701_v1/train/part-00000.parquet",
+        "bytes": 13635975,
+        "sha256": "8544003715124658ec48db694805d0d08ea79aff5b14bba0cac452a76c965f0d"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "wikimedia_wikisource_zh_20231201_v2/train/part-00000.parquet",
+        "bytes": 36372849,
+        "sha256": "017a71cab4141426ce49fc91c79b2cccbd0f9c271a61ed4338f520c7d92762f4"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "wikimedia_zhwiki_20260701_v1/train/part-00000.parquet",
+        "bytes": 22968936,
+        "sha256": "9ba40312aa2ef8df7e78c6419fea7dd1b483c05d5b494be32b817c771bcf5c37"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "wikimedia_zhwikibooks_20260701_v1/train/part-00000.parquet",
+        "bytes": 249230,
+        "sha256": "94fac6c89eb637d7d6183ddc920db370e1ee1054116d6098c1268be0b9b872bd"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "wikimedia_zhwikinews_20260701_v1/train/part-00000.parquet",
+        "bytes": 117560,
+        "sha256": "616f18dd6d4462917b51d6df78a63063b3e57f1f17096d0479f1e54c9e05ccb5"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "wikimedia_zhwikiquote_20260701_v1/train/part-00000.parquet",
+        "bytes": 83249,
+        "sha256": "693e75fe0f5015460c9ec5d3baf2906a8cb47692da23ba204e671ac5a86093d7"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "wikimedia_zhwikiversity_20260701_v1/train/part-00000.parquet",
+        "bytes": 152692,
+        "sha256": "b6d940cf42ed43085e7b91a925241fb2f450f22cb4b563e9b04f8c6dee7a77bf"
+      },
+      {
+        "root": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g",
+        "path": "zhihu_kol_modern_chinese_qa_v1/train/part-00000.parquet",
+        "bytes": 3212437,
+        "sha256": "2c6e111ffeef099b2539b76013eed4153f746114489d41df832602545ab9b031"
+      }
+    ]
+  },
+  "provenance_documents": [
+    {
+      "path": "/root/autodl-tmp/sophia/output/tokenizer_training_sample_v7_r2_1_1g/tokenizer_training_sample_report.json",
+      "bytes": 19397,
+      "sha256": "5a4dbd5e1877519418971e498e80904d81528598bc45a04be694b70f15c3a136"
+    },
+    {
+      "path": "/root/autodl-tmp/sophia/reports/pretrain_mix_plan_v7_r2_1_resolved.json",
+      "bytes": 14315,
+      "sha256": "1eda4c9f44705525bddfe50b246031ae374965917c97b498e8d94e92917fb416"
+    },
+    {
+      "path": "/root/autodl-tmp/sophia/project/configs/data/pretrain_data_admission_policy_v2.json",
+      "bytes": 6130,
+      "sha256": "fa1dfedc714f7562bbb5ba0f4d3a23023422eacc35e6cee1de846d8448a6ec90"
+    }
+  ],
+  "implementation": {
+    "script": "/root/autodl-tmp/sophia/project/ml/tooling/scripts/data/train_tokenizer.py",
+    "script_sha256": "2ab2516b66ce8c3fddd9ebfcfa009f99161fd45c90d28914aaf294d4cf9e9db9",
+    "tokenizers": "0.22.2",
+    "transformers": "5.10.2",
+    "pyarrow": "24.0.0"
+  }
+}

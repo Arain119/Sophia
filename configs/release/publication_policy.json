@@ -1,0 +1,21 @@
+{
+  "schema": "sophia_publication_policy",
+  "status": "fixed",
+  "model_license": "Apache-2.0",
+  "copyright_holder": "Arain",
+  "public_think_output": true,
+  "decode": {
+    "skip_special_tokens": false,
+    "remove_terminal_eos": true,
+    "preserve_think_tags": true
+  },
+  "data_notice": "The model/repository license does not relicense upstream training data. Every source remains subject to the license, attribution, and usage restrictions recorded in dataset lineage.",
+  "credential_policy": "Provider credentials are runtime-only and must never be distributed with model artifacts.",
+  "release_requirements": [
+    "LICENSE",
+    "README.md",
+    "docs/model_release.md",
+    "base and post-training evidence reports",
+    "dataset lineage and attribution notice"
+  ]
+}

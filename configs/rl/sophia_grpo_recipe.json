@@ -1,0 +1,82 @@
+{
+  "schema": "sophia_grpo_recipe",
+  "status": "gated_pending_sft_export",
+  "objective": "bounded_post_sft_behavior_correction",
+  "selection": {
+    "source": "release/corpus/val.jsonl",
+    "materialized_pool": "ops/rl_preparation/prompt_pool.jsonl",
+    "exclude_tag": "in_template_set",
+    "ordering": "seeded_category_round_robin",
+    "prefer_multi_turn": true,
+    "seed": 42,
+    "reason": "High-frequency math/code skeletons provide retrieval signal but little within-prompt policy disagreement; validation behavior rows measure the post-SFT objective without replaying SFT examples."
+  },
+  "rollout": {
+    "pilot_prompts": 64,
+    "max_prompts": 256,
+    "group_size": 4,
+    "max_new_tokens": 256,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "public_decode": {
+      "skip_special_tokens": false,
+      "preserve_think": true,
+      "remove_only_terminal_eos": true
+    },
+    "reason": "A group of four is the smallest practical comparison set that supplies a stable within-prompt advantage while keeping one rollout group small enough for a 32GB card. Temperature 1.0 and top-p 0.95 create the disagreement GRPO needs; the 256-token cap bounds cost and prevents length from becoming the reward."
+  },
+  "judge": {
+    "provider": "claude-haiku-4-5",
+    "max_total_usd": 50.0,
+    "run_ceiling_usd": 5.0,
+    "score_range": [
+      0,
+      100
+    ],
+    "criteria": [
+      "request_fulfillment",
+      "self_consistency",
+      "identity_and_context_consistency",
+      "task_artifact_delivery",
+      "natural_multi_turn_coherence",
+      "correct_uncertainty_or_refusal",
+      "accurate_release_and_data_rights_statement",
+      "firm_without_gratuitous_harassment",
+      "low_repetition"
+    ],
+    "length_is_not_a_positive_signal": true,
+    "reason": "The semantic judge supplies the signal that exact text checks cannot: fluent contradictions, fabricated facts, and context loss. The ledger is reset at handoff and records only post-handoff spend."
+  },
+  "reward_gate": {
+    "minimum_score_std": 5.0,
+    "minimum_signal_rate": 0.25,
+    "signal_definition": "fraction of judged groups whose four 0-100 scores have population standard deviation at least 5",
+    "action_below_gate": "do_not_run_grpo; retain_sft",
+    "action_above_gate": "run_one_bounded_pass_then_re_evaluate",
+    "reason": "Standardized advantages erase absolute judge scale, but a five-point spread is retained as a noise floor before spending GPU steps."
+  },
+  "optimization": {
+    "algorithm": "group_relative_policy_optimization",
+    "steps": 64,
+    "learning_rate": 5e-07,
+    "clip_epsilon": 0.2,
+    "kl_beta": 0.02,
+    "optimizer": "torch_muon_hybrid",
+    "weight_decay": 0.0,
+    "batch_groups": 1,
+    "gradient_accumulation": 1,
+    "qk_clip_threshold": 100.0,
+    "max_seq_len": 4096,
+    "reason": "The 5e-7 rate is 5% of the formal SFT peak and 64 updates expose roughly 0.12% of one SFT epoch at the 256-token response cap. PPO's 0.2 ratio clip bounds each sampled update; beta 0.02 makes the reference-KL term a small trust-region penalty without replacing the clipped objective."
+  },
+  "promotion": {
+    "required": [
+      "finite_grpo_loss_and_gradients",
+      "post_rl_behavior_suite_no_regression",
+      "post_rl_ppl_no_material_regression",
+      "independent_verifier_suite_complete",
+      "public_think_decode_audited"
+    ],
+    "fallback": "release_completed_sft_checkpoint_if_any_gate_fails"
+  }
+}

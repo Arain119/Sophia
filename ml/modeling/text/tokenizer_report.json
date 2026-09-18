@@ -1,0 +1,651 @@
+{
+  "vocab_size": 65536,
+  "training_input": {
+    "pretrain_texts": 114189,
+    "pretrain_bytes": 536870904,
+    "total_texts": 114189,
+    "total_bytes": 536870904,
+    "truncated_texts": 30,
+    "buckets": {
+      "pretrain/common_pile_arxiv_papers_filtered_v2": {
+        "texts": 2294,
+        "bytes": 18790482
+      },
+      "pretrain/common_pile_doab_filtered_v2": {
+        "texts": 7455,
+        "bytes": 34774968
+      },
+      "pretrain/common_pile_libretexts_filtered_v2": {
+        "texts": 346,
+        "bytes": 1648535
+      },
+      "pretrain/common_pile_pre_1929_books_filtered_v2": {
+        "texts": 1146,
+        "bytes": 9365604
+      },
+      "pretrain/common_pile_pressbooks_filtered_v2": {
+        "texts": 784,
+        "bytes": 2529276
+      },
+      "pretrain/common_pile_pubmed_filtered_v2": {
+        "texts": 1038,
+        "bytes": 8053064
+      },
+      "pretrain/common_pile_stackv2_edu_filtered_v2": {
+        "texts": 2874,
+        "bytes": 7266192
+      },
+      "pretrain/finemath_3plus_v1": {
+        "texts": 2724,
+        "bytes": 9987698
+      },
+      "pretrain/finemath_4plus_v1": {
+        "texts": 8396,
+        "bytes": 30277621
+      },
+      "pretrain/fineweb_edu_english_dedup_v1": {
+        "texts": 17739,
+        "bytes": 61063494
+      },
+      "pretrain/github_code_clean_permissive_v1": {
+        "texts": 6886,
+        "bytes": 21424961
+      },
+      "pretrain/opencsg_fineweb_edu_zh_3_4_humanities_v1": {
+        "texts": 1568,
+        "bytes": 7677504
+      },
+      "pretrain/opencsg_fineweb_edu_zh_4_5_full_v6": {
+        "texts": 31548,
+        "bytes": 205868201
+      },
+      "pretrain/skypile_diverse_chinese_web_v1": {
+        "texts": 6329,
+        "bytes": 29000419
+      },
+      "pretrain/the_stack_smol_xl_permissive_v1": {
+        "texts": 4204,
+        "bytes": 12250828
+      },
+      "pretrain/wikimedia_enwiki_20260701_v1": {
+        "texts": 5303,
+        "bytes": 16106127
+      },
+      "pretrain/wikimedia_wikisource_zh_20231201_v2": {
+        "texts": 5242,
+        "bytes": 35557805
+      },
+      "pretrain/wikimedia_zhwiki_20260701_v1": {
+        "texts": 7737,
+        "bytes": 21820985
+      },
+      "pretrain/wikimedia_zhwikibooks_20260701_v1": {
+        "texts": 47,
+        "bytes": 225086
+      },
+      "pretrain/wikimedia_zhwikinews_20260701_v1": {
+        "texts": 66,
+        "bytes": 110149
+      },
+      "pretrain/wikimedia_zhwikiquote_20260701_v1": {
+        "texts": 6,
+        "bytes": 75659
+      },
+      "pretrain/wikimedia_zhwikiversity_20260701_v1": {
+        "texts": 41,
+        "bytes": 140592
+      },
+      "pretrain/zhihu_kol_modern_chinese_qa_v1": {
+        "texts": 416,
+        "bytes": 2855654
+      }
+    }
+  },
+  "protocol": {
+    "core_special_tokens": [
+      "<|pad|>",
+      "<|unk|>",
+      "<｜begin▁of▁sentence｜>",
+      "<｜end▁of▁sentence｜>",
+      "<｜User｜>",
+      "<｜Assistant｜>",
+      "<｜latest_reminder｜>",
+      "<think>",
+      "</think>"
+    ],
+    "additional_special_tokens": [
+      "<｜User｜>",
+      "<｜Assistant｜>",
+      "<｜latest_reminder｜>",
+      "<think>",
+      "</think>"
+    ],
+    "reasoning_tokens_enabled": true
+  },
+  "special_tokens": {
+    "all_special_tokens": [
+      "<｜begin▁of▁sentence｜>",
+      "<｜end▁of▁sentence｜>",
+      "<|unk|>",
+      "<|pad|>",
+      "<｜User｜>",
+      "<｜Assistant｜>",
+      "<｜latest_reminder｜>",
+      "<think>",
+      "</think>"
+    ],
+    "all_special_ids": [
+      2,
+      3,
+      1,
+      0,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "core_special_token_ids": {
+      "<|pad|>": 0,
+      "<|unk|>": 1,
+      "<｜begin▁of▁sentence｜>": 2,
+      "<｜end▁of▁sentence｜>": 3,
+      "<｜User｜>": 4,
+      "<｜Assistant｜>": 5,
+      "<｜latest_reminder｜>": 6,
+      "<think>": 7,
+      "</think>": 8
+    }
+  },
+  "evaluation": {
+    "samples": {
+      "zh_short": {
+        "chars": 31,
+        "tokens": 16,
+        "chars_per_token": 1.9375,
+        "ids": [
+          2537,
+          13778,
+          1629,
+          13026,
+          229,
+          14829,
+          995,
+          353,
+          3234,
+          2998,
+          1694,
+          350,
+          15580,
+          3334,
+          1759,
+          291
+        ],
+        "tokens_preview": [
+          "ä½ł",
+          "å¥½ï¼Į",
+          "ä¸ĸçķĮ",
+          "ãĢĤè¿Ļä¸ª",
+          "Ġ",
+          "token",
+          "iz",
+          "erĠ",
+          "åºĶè¯¥",
+          "ç¨³å®ļ",
+          "å¤ĦçĲĨ",
+          "ä¸Ń",
+          "èĭ±æĸĩ",
+          "æ··",
+          "æİĴ",
+          "ãĢĤ"
+        ],
+        "roundtrip_ok": true,
+        "decoded": "你好，世界。这个 tokenizer 应该稳定处理中英文混排。"
+      },
+      "en_short": {
+        "chars": 60,
+        "tokens": 12,
+        "chars_per_token": 5.0,
+        "ids": [
+          1005,
+          8470,
+          14829,
+          995,
+          353,
+          2331,
+          7035,
+          4245,
+          7348,
+          15173,
+          44019,
+          22
+        ],
+        "tokens_preview": [
+          "AĠ",
+          "strongĠ",
+          "token",
+          "iz",
+          "erĠ",
+          "shouldĠ",
+          "keepĠ",
+          "commonĠ",
+          "EnglishĠ",
+          "wordsĠ",
+          "compact",
+          "."
+        ],
+        "roundtrip_ok": true,
+        "decoded": "A strong tokenizer should keep common English words compact."
+      },
+      "math_latex": {
+        "chars": 37,
+        "tokens": 15,
+        "chars_per_token": 2.4667,
+        "ids": [
+          635,
+          229,
+          37354,
+          3714,
+          55650,
+          4826,
+          3046,
+          43490,
+          229,
+          46145,
+          18811,
+          726,
+          3518,
+          7181,
+          291
+        ],
+        "tokens_preview": [
+          "è®¾",
+          "Ġ",
+          "f(x)=",
+          "\\frac{",
+          "x^2+",
+          "1}{",
+          "2}",
+          "ï¼Įæ±Ĥ",
+          "Ġ",
+          "f'",
+          "(x)Ġ",
+          "å¹¶",
+          "è§£éĩĬ",
+          "æŃ¥éª¤",
+          "ãĢĤ"
+        ],
+        "roundtrip_ok": true,
+        "decoded": "设 f(x)=\\frac{x^2+1}{2}，求 f'(x) 并解释步骤。"
+      },
+      "code_python": {
+        "chars": 67,
+        "tokens": 16,
+        "chars_per_token": 4.1875,
+        "ids": [
+          762,
+          63805,
+          2327,
+          49319,
+          207,
+          4788,
+          3962,
+          679,
+          584,
+          16,
+          7695,
+          14829,
+          7262,
+          14829,
+          11547,
+          20399
+        ],
+        "tokens_preview": [
+          "fromĠ",
+          "collectionsĠ",
+          "importĠ",
+          "Counter",
+          "Ċ",
+          "print",
+          "(C",
+          "oun",
+          "ter",
+          "(",
+          "['",
+          "token",
+          "',Ġ'",
+          "token",
+          "']",
+          "))Ċ"
+        ],
+        "roundtrip_ok": true,
+        "decoded": "from collections import Counter\nprint(Counter(['token', 'token']))\n"
+      },
+      "dialog": {
+        "chars": 44,
+        "tokens": 17,
+        "chars_per_token": 2.5882,
+        "ids": [
+          4,
+          1887,
+          29230,
+          3518,
+          20969,
+          3208,
+          10118,
+          291,
+          5,
+          20969,
+          3208,
+          10118,
+          2600,
+          3779,
+          7187,
+          15503,
+          291
+        ],
+        "tokens_preview": [
+          "<｜User｜>",
+          "è¯·",
+          "ç®Ģè¦ģ",
+          "è§£éĩĬ",
+          "æ¢¯åº¦",
+          "è£ģ",
+          "åīª",
+          "ãĢĤ",
+          "<｜Assistant｜>",
+          "æ¢¯åº¦",
+          "è£ģ",
+          "åīª",
+          "çĶ¨äºİ",
+          "éĻĲåĪ¶",
+          "æĽ´æĸ°",
+          "å¹ħåº¦",
+          "ãĢĤ"
+        ],
+        "roundtrip_ok": true,
+        "decoded": "<｜User｜>请简要解释梯度裁剪。<｜Assistant｜>梯度裁剪用于限制更新幅度。"
+      },
+      "thinking": {
+        "chars": 27,
+        "tokens": 9,
+        "chars_per_token": 3.0,
+        "ids": [
+          7,
+          1080,
+          32089,
+          7318,
+          8256,
+          18777,
+          7384,
+          291,
+          8
+        ],
+        "tokens_preview": [
+          "<think>",
+          "åħĪ",
+          "åĪĹåĩº",
+          "çº¦æĿŁ",
+          "ï¼ĮåĨį",
+          "ç»Ļåĩº",
+          "ç»ĵè®º",
+          "ãĢĤ",
+          "</think>"
+        ],
+        "roundtrip_ok": true,
+        "decoded": "<think>先列出约束，再给出结论。</think>"
+      },
+      "punctuation": {
+        "chars": 45,
+        "tokens": 16,
+        "chars_per_token": 2.8125,
+        "ids": [
+          13681,
+          604,
+          62680,
+          287,
+          14870,
+          539,
+          16068,
+          5988,
+          11595,
+          22055,
+          10,
+          86,
+          11595,
+          19834,
+          3186,
+          15356
+        ],
+        "tokens_preview": [
+          "URL",
+          "s,Ġ",
+          "e-mail",
+          ",Ġ",
+          "JSON",
+          ":Ġ",
+          "{\"",
+          "ok",
+          "\":Ġ",
+          "true,Ġ",
+          "\"",
+          "n",
+          "\":Ġ",
+          "123",
+          "45",
+          "}."
+        ],
+        "roundtrip_ok": true,
+        "decoded": "URLs, e-mail, JSON: {\"ok\": true, \"n\": 12345}."
+      },
+      "rare_unicode": {
+        "chars": 38,
+        "tokens": 31,
+        "chars_per_token": 1.2258,
+        "ids": [
+          8852,
+          21581,
+          12198,
+          256,
+          233,
+          26098,
+          1800,
+          268,
+          103,
+          268,
+          104,
+          268,
+          105,
+          57857,
+          563,
+          44514,
+          44903,
+          4799,
+          113,
+          3830,
+          241,
+          315,
+          2369,
+          510,
+          2494,
+          78,
+          15098,
+          14989,
+          18870,
+          1558,
+          22
+        ],
+        "tokens_preview": [
+          "emo",
+          "ji",
+          "ðŁ",
+          "Ļ",
+          "Ĥ",
+          "ãĢģåħ¨",
+          "è§Ĵ",
+          "ï¼",
+          "¡",
+          "ï¼",
+          "¢",
+          "ï¼",
+          "£",
+          "ãĢģæĹ¥",
+          "æĸĩ",
+          "ãģĭ",
+          "ãģª",
+          "ãĤ",
+          "«",
+          "ãĥ",
+          "Ĭ",
+          "ãĢģ",
+          "acc",
+          "entĠ",
+          "ca",
+          "f",
+          "Ã©Ġ",
+          "na",
+          "Ã¯",
+          "ve",
+          "."
+        ],
+        "roundtrip_ok": true,
+        "decoded": "emoji🙂、全角ＡＢＣ、日文かなカナ、accent café naïve."
+      }
+    },
+    "roundtrip_failures": [],
+    "mean_chars_per_token": 2.9023,
+    "min_chars_per_token": 1.2258,
+    "max_chars_per_token": 5.0,
+    "top_eval_token_ids": [
+      {
+        "id": 291,
+        "count": 5
+      },
+      {
+        "id": 14829,
+        "count": 4
+      },
+      {
+        "id": 229,
+        "count": 3
+      },
+      {
+        "id": 268,
+        "count": 3
+      },
+      {
+        "id": 995,
+        "count": 2
+      },
+      {
+        "id": 353,
+        "count": 2
+      },
+      {
+        "id": 22,
+        "count": 2
+      },
+      {
+        "id": 3518,
+        "count": 2
+      },
+      {
+        "id": 20969,
+        "count": 2
+      },
+      {
+        "id": 3208,
+        "count": 2
+      },
+      {
+        "id": 10118,
+        "count": 2
+      },
+      {
+        "id": 11595,
+        "count": 2
+      },
+      {
+        "id": 2537,
+        "count": 1
+      },
+      {
+        "id": 13778,
+        "count": 1
+      },
+      {
+        "id": 1629,
+        "count": 1
+      },
+      {
+        "id": 13026,
+        "count": 1
+      },
+      {
+        "id": 3234,
+        "count": 1
+      },
+      {
+        "id": 2998,
+        "count": 1
+      },
+      {
+        "id": 1694,
+        "count": 1
+      },
+      {
+        "id": 350,
+        "count": 1
+      },
+      {
+        "id": 15580,
+        "count": 1
+      },
+      {
+        "id": 3334,
+        "count": 1
+      },
+      {
+        "id": 1759,
+        "count": 1
+      },
+      {
+        "id": 1005,
+        "count": 1
+      },
+      {
+        "id": 8470,
+        "count": 1
+      },
+      {
+        "id": 2331,
+        "count": 1
+      },
+      {
+        "id": 7035,
+        "count": 1
+      },
+      {
+        "id": 4245,
+        "count": 1
+      },
+      {
+        "id": 7348,
+        "count": 1
+      },
+      {
+        "id": 15173,
+        "count": 1
+      },
+      {
+        "id": 44019,
+        "count": 1
+      },
+      {
+        "id": 635,
+        "count": 1
+      }
+    ]
+  },
+  "tokenizer_bundle_sha1": "abfcdb43c161a541e08ffb2cbc3794cd2fdc189f"
+}
